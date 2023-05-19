@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour
+public class DashScript : MonoBehaviour
 {
     private float horizontal;
     private float speed = 24f;
@@ -21,19 +20,19 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private TrailRenderer tr;
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     private void Update()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
-        
-        if(isDashing) 
+
+        if (isDashing)
         {
             return;
         }
-        if(Input.GetKeyDown(KeyCode.LeftShift) && canDash) 
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
         {
             StartCoroutine(Dash());
         }
@@ -41,7 +40,7 @@ public class PlayerManager : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if(isDashing)
+        if (isDashing)
         {
 
             return;
@@ -51,12 +50,12 @@ public class PlayerManager : MonoBehaviour
 
     private bool IsGrounded()
     {
-        return Physics2D.OverlapCircle(groundCheck.position,0.2f,groundLayer);
+        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
 
     private void Flip()
     {
-        if(isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
+        if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
         {
             Vector3 localScale = transform.localScale;
             isFacingRight = !isFacingRight;
@@ -70,10 +69,10 @@ public class PlayerManager : MonoBehaviour
         isDashing = true;
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0f;
-        rb.velocity = new Vector2 (transform.localScale.x * dashPower,0f);
+        rb.velocity = new Vector2(transform.localScale.x * dashPower, 0f);
         tr.emitting = true;
         yield return new WaitForSeconds(dashTime);
-        tr.emitting = false; 
+        tr.emitting = false;
         rb.gravityScale = originalGravity;
         isDashing = false;
         yield return new WaitForSeconds(dashingCooldown);

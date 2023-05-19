@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class Old_PlayerMovement : PlayerData
 {
     private float horizontal;
     private float vertical;
@@ -11,21 +12,10 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] Rigidbody2D rb;
     [SerializeField] private TrailRenderer tr;
-    private bool canDash = true;
-    private bool isDashing;
-    private float dashPower = 24.0f;
-    private float dashTime = 0.2f;
-    private float dashingCooldown = 1f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
-        
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
         var mousePos = Input.mousePosition;
@@ -34,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Flip();
         }
-        else if(mousePos.x > 500 && !isFacingRight)
+        else if (mousePos.x > 500 && !isFacingRight)
         {
             Flip();
         }
@@ -47,18 +37,20 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(Dash());
         }
     }
-
+    private void FixedUpdate()
+    {
+        if (isDashing)
+        {
+            return;
+        }
+        rb.velocity = new Vector2(horizontal * player_Speed, horizontal * player_Speed);
+        rb.velocity = new Vector2(horizontal * player_Speed, vertical * player_Speed);
+    }
     private void Flip()
     {
         isFacingRight = !isFacingRight;
         transform.Rotate(0f, 180f, 0f);
     }
-    private void FixedUpdate()
-    {
-        rb.velocity = new Vector2(horizontal * speed, horizontal * speed);
-        rb.velocity = new Vector2(horizontal * speed, vertical * speed);
-    }
-
     private IEnumerator Dash()
     {
         canDash = false;
