@@ -45,3 +45,6 @@ TagManager:
   - name: New Layer 1
     uniqueID: 713102479
     locked: 0
+  - name: New Layer 2
+    uniqueID: 1681157263
+    locked: 0

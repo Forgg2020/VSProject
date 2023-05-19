@@ -6,11 +6,29 @@ namespace ToolManager
 {
     public class FindObj
     {
-        public GameObject FindObject (string tag)
+        public GameObject FindObjectbyTag(string tag)
         {
             return GameObject.FindGameObjectWithTag(tag);
         }
+        public GameObject FindObjectbyName(string name)
+        {
+            return GameObject.Find(name);
+        }
+        public void FindObjectScript<T>(string name, out T component) where T : Component
+        {
+            GameObject target = GameObject.Find(name);
+            if (target != null)
+            {
+                component = target.GetComponent<T>();
+            }
+            else
+            {
+                Debug.LogError($"Can't find {name}");
+                component = null;
+            }
+        }
     }
+    
     public class colliderManager : MonoBehaviour
     {
         protected virtual string CollisionTag { get; } = "Player";

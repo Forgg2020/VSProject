@@ -2,66 +2,76 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ToolManager;
+using System;
 
 public class PlayerMovement : CharactorManager
 {
     FindObj findObj = new FindObj();
     PlayerData playerData = new PlayerData();
-
+    InputSystem inputSystem = new InputSystem();
+    Rigidbody2D rb2D;
+    TrailRenderer Tr;
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.GetComponent<InputSystem>().OnFlip += Flip;
-        gameObject.GetComponent<InputSystem>().OnDash += Dashing;
-        gameObject.GetComponent<InputSystem>().OnTurnVertical += TurnVertical;
-        gameObject.GetComponent<InputSystem>().OnTurnHorizontal += TurnHorizontal;
+        rb2D = GetComponent<Rigidbody2D>();
+        Tr = GetComponent<TrailRenderer>();
+        GetManager().GetComponent<InputSystem>().OnFlip += Flip;
+        //GetManager().GetComponent<InputSystem>().OnDash += Dashing;
+        GetManager().GetComponent<InputSystem>().OnTurnVertical += TurnVertical;
+        GetManager().GetComponent<InputSystem>().OnTurnHorizontal += TurnHorizontal;
     }
     private void FixedUpdate()
     {
+        print(movementVector.x);
         ChararctorMovement();
     }
-    private void Update()
+    private void TurnHorizontal(float horizontal)
     {
-        ChararctorMovement();
+        print(movementVector.x);
+        movementVector.x = horizontal;
     }
-    private void TurnHorizontal()
+    private void TurnVertical(float vertical)
     {
-        movementVector.x = Input.GetAxisRaw("Horizontal");
-    }
-    private void TurnVertical()
-    {
-        movementVector.y = Input.GetAxisRaw("Vertical");
+        movementVector.y = vertical;
     }
     private void Dashing()
     {
-        GetTrailRenderer().emitting = true;
+        //StartCoroutine(Dash());
     }
-    private void Flip()
+    private void Flip(float mousePV)
     {
-        GetPlayer().transform.Rotate(0f, 180f, 0f);
+        gameObject.transform.Rotate(0f, 180f, 0f);
     }
     public new void ChararctorMovement()
     {
-        movementVector *= playerData.player_Speed;
-        GetPlayerRb().velocity = movementVector;
+        Vector3 currentVector;
+        currentVector = movementVector * playerData.player_Speed;
+        rb2D.velocity = currentVector;
         base.ChararctorMovement();
     }
 
     /***************************ùSéÊõìôΩ*****************************/
-    public GameObject GetPlayer() 
+    public GameObject GetManager()
     {
-        GameObject player = findObj.FindObject("Player");
-        return player;
-    }
-    public Rigidbody2D GetPlayerRb() 
-    {
-        Rigidbody2D rb2D = GetPlayer().GetComponent<Rigidbody2D>();
-        return rb2D;
-    }
-    public TrailRenderer GetTrailRenderer() 
-    {
-        TrailRenderer Trail = GetPlayer().GetComponent<TrailRenderer>();
-        return Trail;
+        GameObject PlayerManager = findObj.FindObjectbyName("PlayerManager");
+        return PlayerManager;
     }
 
+
+
+    /*å˜î\õìôΩ*/
+    //private IEnumerator Dash()
+    //{
+    //    playerData.canDash = false;
+    //    playerData.isDashing = true;
+    //    rb2D.gravityScale = 0f;
+    //    rb2D.velocity = new Vector2(transform.localScale.x * playerData.dashPower, 0f);
+    //    Tr.emitting = true;
+    //    yield return new WaitForSeconds(playerData.dashTime);
+    //    Tr.emitting = false;
+    //    playerData.isDashing = false;
+    //    yield return new WaitForSeconds(playerData.dashingCooldown);
+    //    playerData.canDash = true;
+    //}
 }

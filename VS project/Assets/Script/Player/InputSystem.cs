@@ -5,58 +5,65 @@ using UnityEngine.Video;
 
 public class InputSystem : MonoBehaviour
 {
+
+    PlayerData playerData = new PlayerData();
     /********************à⁄ìÆ********************/
-    public delegate void OnInputEvent();
+    public delegate void OnInputEvent(float i);
     public event OnInputEvent OnTurnHorizontal;
     public event OnInputEvent OnTurnVertical;
-    public event OnInputEvent OnDash;
     public event OnInputEvent OnFlip;
+    //public event OnInputEvent OnDash;
 
-    /********************Ázå¸********************/
+    /********************Ázå¸********************/    
+    public bool isFacingRight = true;
 
+    /********************è’éh********************/
 
     private void Update()
     {
-        Dash();
+        //Dash();
         Flip();
         TurnVertical();
         TurnHorizontal();
     }
     public void TurnHorizontal()
     {
-        if (Input.GetAxis("Horizontal") != 0)
+        var horizontal = Input.GetAxis("Horizontal");
+        if (horizontal != 0)
         {
-            OnTurnHorizontal?.Invoke();
+            OnTurnHorizontal?.Invoke(horizontal);
+            print(horizontal);
         }
     }
     public void TurnVertical()
     {
-        if (Input.GetAxis("Vertical") != 0)
+        var vertical = Input.GetAxis("Vertical");
+        if (vertical != 0)
         {
-            OnTurnVertical?.Invoke();
+            OnTurnVertical?.Invoke(vertical);
+            print(vertical);
         }
     }
-    public void Dash()
-    {
-        if(Input.GetKeyDown(KeyCode.Space)) 
-        {
-            OnDash?.Invoke();
-        }
-    }
+    //public void Dash()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Space) && playerData.canDash)
+    //    {            
+    //        OnDash?.Invoke();
+    //    }
+    //}
     public void Flip()
     {
-        bool isFacingRight = true;
         var mousePos = Input.mousePosition;
-        int mousePV = 500;
-        print(Input.mousePosition);
-        if(mousePos.x < mousePV && isFacingRight)
-        {            
-            isFacingRight = !isFacingRight;
-            OnFlip?.Invoke();
-        }else if(mousePos.x > mousePV && !isFacingRight) 
+        float mousePV = 500;
+        if (mousePos.x < mousePV && isFacingRight)
         {
+            OnFlip?.Invoke(mousePV);
             isFacingRight = !isFacingRight;
-            OnFlip?.Invoke();
+        }
+        else if (mousePos.x > mousePV && !isFacingRight)
+        {
+            OnFlip?.Invoke(mousePV);
+            isFacingRight = !isFacingRight;
         }
     }
 }
