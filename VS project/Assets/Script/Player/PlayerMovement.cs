@@ -51,7 +51,7 @@ public class PlayerMovement : CharactorManager
         base.ChararctorMovement();
     }
 
-    /***************************Sæ›“™½*****************************/
+    /***************************Sæ?™½*****************************/
     public GameObject GetManager()
     {
         GameObject PlayerManager = findObj.FindObjectbyName("PlayerManager");
@@ -60,7 +60,7 @@ public class PlayerMovement : CharactorManager
 
 
 
-    /*Œ÷”\›“™½*/
+    /*Œ÷”\?™½*/
     //private IEnumerator Dash()
     //{
     //    playerData.canDash = false;
