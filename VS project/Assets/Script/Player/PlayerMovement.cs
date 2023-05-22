@@ -11,11 +11,13 @@ public class PlayerMovement : CharactorManager
     InputSystem inputSystem = new InputSystem();
     Rigidbody2D rb2D;
     TrailRenderer Tr;
+    GameObject weaponPoint;
     // Start is called before the first frame update
     void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
         Tr = GetComponent<TrailRenderer>();
+        weaponPoint = findObj.FindObjectbyName("Weapon");
         GetManager().GetComponent<InputSystem>().OnFlip += Flip;
         //GetManager().GetComponent<InputSystem>().OnDash += Dashing;
         GetManager().GetComponent<InputSystem>().OnTurnVertical += TurnVertical;
@@ -23,12 +25,16 @@ public class PlayerMovement : CharactorManager
     }
     private void FixedUpdate()
     {
-        print(movementVector.x);
+        
         ChararctorMovement();
+    }
+
+    private void Update()
+    {
+        FacePlayer();
     }
     private void TurnHorizontal(float horizontal)
     {
-        print(movementVector.x);
         movementVector.x = horizontal;
     }
     private void TurnVertical(float vertical)
@@ -43,12 +49,19 @@ public class PlayerMovement : CharactorManager
     {
         gameObject.transform.Rotate(0f, 180f, 0f);
     }
-    public new void ChararctorMovement()
+    public override void ChararctorMovement()
     {
         Vector3 currentVector;
         currentVector = movementVector * playerData.player_Speed;
         rb2D.velocity = currentVector;
         base.ChararctorMovement();
+    }
+    void FacePlayer()
+    {
+        Vector3 mousePosition = Input.mousePosition;
+        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        Vector2 direction = new Vector2(mousePosition.x - weaponPoint.transform.position.x, mousePosition.y - weaponPoint.transform.position.y);
+        weaponPoint.transform.up = direction;
     }
 
     /***************************ùSéÊ?ôΩ*****************************/
