@@ -5,8 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] Transform targetDestination;
     [SerializeField] float speed;
+    [SerializeField] Transform targetDestination;
 
     Rigidbody2D rb2D;
     // Start is called before the first frame update

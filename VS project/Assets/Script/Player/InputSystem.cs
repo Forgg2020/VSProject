@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 
-public class InputSystem : MonoBehaviour
+public class InputSystem : MonoBehaviour 
 {
 
     PlayerData playerData = new PlayerData();
@@ -63,7 +63,5 @@ public class InputSystem : MonoBehaviour
             OnFlip?.Invoke(mousePV);
             isFacingRight = !isFacingRight;
         }
-    }
-
-    
+    }    
 }
