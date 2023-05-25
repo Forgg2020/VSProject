@@ -11,12 +11,11 @@ public class ChainSword : MonoBehaviour
     [SerializeField] public float weapon_AttackRange;
     [SerializeField] public float weapon_AttackRepel;
     [SerializeField] public Animator weapon_Animator;   
-
-    [SerializeField] public bool see;
+    
 
     [SerializeField] public SpriteRenderer spriteRenderer;
-    [SerializeField] public Collider2D collider2D;
     [SerializeField] public AudioSource audioSource;
+    [SerializeField] public Collider2D collider2D;
 
     private void Start()
     {
@@ -31,10 +30,10 @@ public class ChainSword : MonoBehaviour
         weapon_AttackFreq -= Time.deltaTime;
         if (weapon_AttackFreq <= 0)
         {
+            audioSource.Play();
             weapon_Animator.SetBool("Atk", true);
             collider2D.enabled = true;
             spriteRenderer.enabled = true;
-            audioSource.Play();
         }
     }
 
