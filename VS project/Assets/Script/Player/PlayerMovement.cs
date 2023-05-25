@@ -67,7 +67,7 @@ public class PlayerMovement : CharactorManager
     /***************************Sæ?™½*****************************/
     public GameObject GetManager()
     {
-        GameObject PlayerManager = findObj.FindObjectbyName("PlayerManager");
+        GameObject PlayerManager = findObj.FindObjectbyName("InputManager");
         return PlayerManager;
     }
 

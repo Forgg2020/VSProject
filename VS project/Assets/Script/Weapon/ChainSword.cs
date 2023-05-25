@@ -1,27 +1,48 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-public class ChainSword : WeaponData
+public class ChainSword : MonoBehaviour
 {
-    Animator Am;
-    public new float weapon_AttackFreq = 5f;
+    [SerializeField] public float weapon_AttackFreq;
+    [SerializeField] public float weapon_AttackCD;
+    [SerializeField] public float weapon_AttackDmg;
+    [SerializeField] public float weapon_AttackRange;
+    [SerializeField] public float weapon_AttackRepel;
+    [SerializeField] public Animator weapon_Animator;   
 
-    public delegate void OnWeaponCD();
-    public event OnWeaponCD OnTurnHorizontal;
-    void Start()
-    {        
-        Am = GetComponent<Animator>();
-        Am.SetBool("Atk", true);
+    [SerializeField] public bool see;
+
+    [SerializeField] public SpriteRenderer spriteRenderer;
+    [SerializeField] public Collider2D collider2D;
+    [SerializeField] public AudioSource audioSource;
+
+    private void Start()
+    {
+        weapon_Animator = GetComponent<Animator>(); 
     }
-
-    // Update is called once per frame
-    void Update()
+    private void Update()
+    {
+        Attacking();
+    }
+    public void Attacking()
     {
         weapon_AttackFreq -= Time.deltaTime;
-        if(weapon_AttackFreq < 0) 
-        { }
+        if (weapon_AttackFreq <= 0)
+        {
+            weapon_Animator.SetBool("Atk", true);
+            collider2D.enabled = true;
+            spriteRenderer.enabled = true;
+            audioSource.Play();
+        }
     }
 
+    public void AttackInCD()
+    {
+        weapon_AttackFreq = weapon_AttackCD;
+        collider2D.enabled = false;
+        spriteRenderer.enabled = false;
+        weapon_Animator.SetBool("Atk", false);
+    }
 }

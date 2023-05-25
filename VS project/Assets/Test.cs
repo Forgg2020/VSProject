@@ -1,21 +1,24 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using ToolManager;
 using UnityEngine;
+using System.Linq;
+using System.Reflection;
 
 public class Test : MonoBehaviour
 {
-
-    private void Update()
+    private void Start()
     {
-        FacePlayer();
+        //instance
     }
-    void FacePlayer()
+    
+    void saveSave ()
     {
-        Vector3 mousePosition = Input.mousePosition;
-        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        bool isDerivedFromMonoBehaviour = typeof(Test).IsSubclassOf(typeof(MonoBehaviour));
+        Debug.Log("YourScript is derived from MonoBehaviour: " + isDerivedFromMonoBehaviour);  // 输出结果：True
 
-        Vector2 direction = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y);
-        transform.up = direction;
+        bool isDerivedFromMonoBehaviour2 = typeof(ChainSword).IsSubclassOf(typeof(MonoBehaviour));
+        Debug.Log("AnotherScript is derived from MonoBehaviour: " + isDerivedFromMonoBehaviour2);  // 输出结果：True
     }
 }

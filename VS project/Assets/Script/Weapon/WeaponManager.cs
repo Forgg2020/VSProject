@@ -1,22 +1,33 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using ToolManager;
 using UnityEngine;
 using System.Linq;
-
+using Unity.VisualScripting;
 
 public class WeaponManager : MonoBehaviour
 {
-    public List<GameObject> listName = new List<GameObject>();
+    public List<GameObject> weaponObjects = new List<GameObject>();
+    public static WeaponManager Instance;
     FindObj FindObj = new FindObj();
+    public GameObject[] weapon;
+    public GameObject Wp;
+    public float timer = 4;
 
-    void Start()
+
+    private void Start()
     {
-        //listName.Add(FindObj.FindObjectbyTag("Weapon"));
+        weapon = FindObj.FindObjectsbyTag("Enemy");
     }
-
-    void AttackInCD()
+    private void Update()
     {
-        
+
+    }
+    void ShowWeapon(float CD)
+    {
+        for(int i = 0; i < weapon.Length; i++)
+        {
+            weapon[i].SetActive(true);
+        }
     }
 }

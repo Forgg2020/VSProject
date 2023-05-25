@@ -1,5 +1,6 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 namespace ToolManager
@@ -10,10 +11,18 @@ namespace ToolManager
         {
             return GameObject.FindGameObjectWithTag(tag);
         }
+        public GameObject[] FindObjectsbyTag(string tag)
+        {
+            return GameObject.FindGameObjectsWithTag(tag);
+        }
         public GameObject FindObjectbyName(string name)
         {
             return GameObject.Find(name);
         }
+        //public GameObject FindObjectbyScriptClass(GameObject obj)
+        //{
+        //    return GameObject.Find(obj.GetComponent<MonoBehaviour>().GetType().IsSubclassOf(typeof(WeaponAbstructClass)));
+        //}
         public void FindObjectScript<T>(string name, out T component) where T : Component
         {
             GameObject target = GameObject.Find(name);
@@ -82,5 +91,8 @@ namespace ToolManager
         {
 
         }
+
     }
+
+
 }

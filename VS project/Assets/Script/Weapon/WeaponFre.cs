@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using ToolManager;
 
-public class WeaponFre : WeaponData
+public class WeaponFre : WeaponAbstructClass
 {
     private void Start()
     {
@@ -12,7 +12,7 @@ public class WeaponFre : WeaponData
 
     public void Update()
     {
-        print(weapon_Animator);
+        //print(weapon_Animator);
     }
     public override void GetAnim()
     {

@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ToolManager;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Enemy : MonoBehaviour
 {
+    FindObj FindObj = new FindObj();
     [SerializeField] float speed;
     [SerializeField] Transform targetDestination;
 
@@ -13,6 +15,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
+        targetDestination = FindObj.FindObjectbyTag("Player").transform;
     }
 
     // Update is called once per frame
