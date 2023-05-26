@@ -16,7 +16,7 @@ public class LaserGenerate : MonoBehaviour
     }
     private void Update()
     {
-        ShootLaser();
+        ShootLaser();  
     }
 
     void ShootLaser()
@@ -27,7 +27,7 @@ public class LaserGenerate : MonoBehaviour
             Draw2DRay(laserFirePoint.position, _hit.point);
         }else
         {
-            Draw2DRay(laserFirePoint.position, laserFirePoint.transform.right * defDistanceRay);
+            Draw2DRay(laserFirePoint.position, laserFirePoint.transform.right * defDistanceRay); 
         }
     }
 
