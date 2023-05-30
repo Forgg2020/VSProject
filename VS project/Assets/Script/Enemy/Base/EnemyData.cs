@@ -32,8 +32,5 @@ public class EnemyData : MonoBehaviour
     {
         Vector3 direction = (targetDestination.position - transform.position).normalized;
         rb2D.velocity = direction * enemy_Speed;  
-    }
-
-
-    
+    }    
 }
