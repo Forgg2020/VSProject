@@ -7,10 +7,13 @@ using ToolManager;
 [RequireComponent(typeof(Rigidbody2D))]
 public class EnemyData : MonoBehaviour
 {
+    /*************************引用*************************/
+    FindObj findObj = new FindObj();
+    /**********************SingleTon**********************/
+    public static EnemyData instance;
+    public static GameObject[] Enemy;
     /************************抓取************************/
-    FindObj FindObj = new FindObj();
     [field: SerializeField] Transform targetDestination;
-
     /************************數值************************/
     [field: SerializeField] public virtual float enemy_Health { get; set; }
     [field: SerializeField] public virtual float enemy_Speed { get; set; }
@@ -24,7 +27,7 @@ public class EnemyData : MonoBehaviour
     protected virtual void  Start()
     {
         rb2D = this.GetComponent<Rigidbody2D>();
-        targetDestination = FindObj.FindObjectbyTag("Player").transform;
+        targetDestination = GameManager.Player.transform;
     }
 
     // Update is called once per frame

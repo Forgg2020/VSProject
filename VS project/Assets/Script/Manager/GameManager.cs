@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     FindObj findObj = new FindObj();
     public static GameManager instance;
-    public GameObject Player;
+    public static GameObject Player;
     private void Awake()
     {
         if (instance == null)
