@@ -9,6 +9,7 @@ public class EnemyData : MonoBehaviour
 {
     /*************************引用*************************/
     FindObj findObj = new FindObj();
+    GameObject player = GameManager.Player;
     /**********************SingleTon**********************/
     public static EnemyData instance;
     public static GameObject[] Enemy;
@@ -27,7 +28,7 @@ public class EnemyData : MonoBehaviour
     protected virtual void  Start()
     {
         rb2D = this.GetComponent<Rigidbody2D>();
-        targetDestination = GameManager.Player.transform;
+        targetDestination = player.transform;
     }
 
     // Update is called once per frame

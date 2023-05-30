@@ -11,6 +11,12 @@ public class GameManager : MonoBehaviour
     public static GameObject Player;
     private void Awake()
     {
+        Player = GameObject.Find("Player");
+        //if (Player = null)
+        //{
+        //    findObj.FindObjectbyTag("Player");
+        //    print(Player.tag);
+        //}
         if (instance == null)
         {
             instance = this;
@@ -25,10 +31,7 @@ public class GameManager : MonoBehaviour
     }
     public void Start()
     {
-        if (Player = null)
-        {
-            findObj.FindObjectbyTag("Player");
-        }
+        
     }
     private GameManager()
     {
