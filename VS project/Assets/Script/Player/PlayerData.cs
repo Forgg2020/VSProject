@@ -14,6 +14,7 @@ public class PlayerData
     public virtual float player_Speed { get; set; } = 24f;
     public virtual float player_DashSpeed { get; } = 48f;
     public virtual float player_InvincibleTime { get; } = 0.5f;
+    public virtual float player_AttackValue { get; } = 10;
 
     //****************************Dash衝刺****************************//
     public float dashingCooldown = 1f;
