@@ -5,18 +5,15 @@ using UnityEngine;
 
 public class EnemyCalculate : MonoBehaviour
 {
-    
-    public void Start()
+    EnemyData enemyData = new EnemyData();
+
+    private void Start()
     {
-       gameObject.GetComponent<EnemyInteract>().OnGetAtk += GetHurt;
+        //enemyData
     }
 
-    public void GetHurt(float Atkvalue)
+    public void MinusHealth(float i)
     {
-        EnemyData[] enemyDataScripts = GetComponents<EnemyData>();
-        foreach (EnemyData enemyDataScript in enemyDataScripts)
-        {
-            enemyDataScript.enemy_Health -= Atkvalue;            
-        }
+        //enemy_Health -= i;
     }
 }

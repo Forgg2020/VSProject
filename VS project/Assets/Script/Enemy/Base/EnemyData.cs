@@ -12,13 +12,12 @@ public class EnemyData : MonoBehaviour
     public GameObject player;
     /**********************SingleTon**********************/
     public static EnemyData instance;
-    public static GameObject[] Enemy;
     /************************抓取************************/
     [field: SerializeField] Transform targetDestination;
     /************************數值************************/
-    [field: SerializeField] public virtual float enemy_Health { get; set; }
-    [field: SerializeField] public virtual float enemy_Speed { get; set; }
-    [field: SerializeField] public virtual float enemy_AttackVaule { get; set; }
+    [field: SerializeField] public virtual float enemy_Health { get;private set; }
+    [field: SerializeField] public virtual float enemy_Speed { get; private set; }
+    [field: SerializeField] public virtual float enemy_AttackVaule { get; private set; }
     /************************事件************************/
     
 
@@ -38,4 +37,15 @@ public class EnemyData : MonoBehaviour
         Vector3 direction = (targetDestination.position - transform.position).normalized;
         rb2D.velocity = direction * enemy_Speed;  
     }    
+    public void MinusHealth(float i)
+    {
+        enemy_Health -= i;
+    }
+
+    protected void Initialize(float health, float speed, float attackvaule)
+    {
+        enemy_Health = health;
+        enemy_Speed = speed;
+        enemy_AttackVaule = attackvaule;
+    }
 }

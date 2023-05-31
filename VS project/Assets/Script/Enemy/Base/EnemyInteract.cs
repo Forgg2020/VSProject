@@ -4,36 +4,54 @@ using UnityEngine;
 using ToolManager;
 
 public class EnemyInteract : MonoBehaviour
-{    
+{
+    public EnemyData enemydata;
     public delegate void OnGetAttack(float Atk);
     public event OnGetAttack OnGetAtk;
     public event OnGetAttack OnDying;
-    public List<GameObject> InteractChar = new List<GameObject>();
+    Rigidbody2D rb2D;
+
+    [Header("顏色")]
+    public SpriteRenderer spriteRenderer;
+    public float fadeDuration = 1f;
+    private float timer = 0f;
+    private Color startColor;
+    private Color targetColor = new Color(1f, 1f, 1f, 0f);
 
     private void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        enemydata = gameObject.GetComponent<EnemyData>();
+        rb2D = gameObject.GetComponent<Rigidbody2D>();
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Weapon"))
         {
-            WeaponData weaponDataScript = other.gameObject.GetComponent<WeaponData>();
-
-            EnemyData[] enemyDataScripts = GetComponents<EnemyData>();
-            foreach (EnemyData enemyDataScript in enemyDataScripts)
-            {
-                if (enemyDataScript.enemy_Health > 0)
-                {
-                    OnGetAtk?.Invoke(weaponDataScript.weapon_AttackDmg);
-                }
-                else if (enemyDataScript.enemy_Health <= weaponDataScript.weapon_AttackDmg)
-                {
-                    OnDying?.Invoke(weaponDataScript.weapon_AttackDmg);
-                }
-            }
+            Geturt(other.gameObject);
         }
-
     }
-
+    private void Geturt(GameObject colObj)
+    {
+        WeaponData weaponDataScript = colObj.gameObject.GetComponent<WeaponData>();
+        enemydata.MinusHealth(weaponDataScript.weapon_AttackDmg);
+        if(enemydata.enemy_Health <= 0)
+        {
+            rb2D.simulated = false;
+            StartCoroutine(FadeOutCoroutine());
+        }
+    }
+    private IEnumerator FadeOutCoroutine()
+    {
+        float timer = 0f;
+        while (timer < fadeDuration)
+        {
+            timer += Time.deltaTime;
+            float t = Mathf.Clamp01(timer / fadeDuration);
+            spriteRenderer.color = Color.Lerp(startColor, targetColor, t);
+            yield return null;
+        }
+        Destroy(gameObject);
+    }
 
 }

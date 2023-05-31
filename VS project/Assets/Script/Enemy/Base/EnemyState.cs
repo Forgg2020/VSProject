@@ -8,7 +8,6 @@ using System.Net.NetworkInformation;
 public class EnemyState : MonoBehaviour
 {
     FindObj findObj = new FindObj();
-    EnemyInteract enemyInteract = new EnemyInteract();
 
     [Header("顏色")]
     public SpriteRenderer spriteRenderer;
@@ -18,22 +17,15 @@ public class EnemyState : MonoBehaviour
     private Color targetColor = new Color(1f, 1f, 1f, 0f);
     public void Start()
     {
-        gameObject.GetComponent<EnemyInteract>().OnGetAtk += GetHurt;
-        gameObject.GetComponent<EnemyInteract>().OnDying += Dying;
-        //gameObject.GetComponent<EnemyInteract>().OnGetAtk += Dying;
+        //gameObject.GetComponent<EnemyInteract>().OnDying += Dying;
         spriteRenderer = GetComponent<SpriteRenderer>();
         startColor = spriteRenderer.color;
-
     }
 
-    public void GetHurt(float atk)
-    {
-        Debug.Log("be ATKing");
-    }
 
     public void Dying(float atk)
     {
-        Destroy(EnemyData.rb2D);
+        
         StartCoroutine(FadeOutCoroutine());
     }
 
@@ -47,6 +39,6 @@ public class EnemyState : MonoBehaviour
             spriteRenderer.color = Color.Lerp(startColor, targetColor, t);
             yield return null;
         }
-        Destroy(gameObject);
+        Destroy(gameObject);  
     }
 }

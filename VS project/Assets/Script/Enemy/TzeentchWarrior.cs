@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using ToolManager;
 
-public class NurgleWarrior : EnemyData
+public class TzeentchWarrior : EnemyData
 {
     FindObj FindObj = new FindObj();
     protected override void Start()

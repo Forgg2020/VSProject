@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using ToolManager;
 
-public class NurgleWarrior : EnemyData
+public class KhorneWarrior : EnemyData
 {
     FindObj FindObj = new FindObj();
     protected override void Start()
     {
-        base .Start();
+        base.Start();
         Initialize(10, 5, 1);
     }
 }

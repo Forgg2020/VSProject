@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using ToolManager;
 
-public class NurgleWarrior : EnemyData
+public class ChaosScum : EnemyData
 {
     FindObj FindObj = new FindObj();
     protected override void Start()
     {
-        base .Start();
+        base.Start();
         Initialize(10, 5, 1);
     }
+    
 }
