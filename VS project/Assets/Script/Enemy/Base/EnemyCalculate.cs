@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class EnemyCalculate : MonoBehaviour
 {
+    
     public void Start()
     {
        gameObject.GetComponent<EnemyInteract>().OnGetAtk += GetHurt;
@@ -12,14 +13,10 @@ public class EnemyCalculate : MonoBehaviour
 
     public void GetHurt(float Atkvalue)
     {
-        EnemyData[] enemyDataScripts = GetComponents<EnemyData>();        
+        EnemyData[] enemyDataScripts = GetComponents<EnemyData>();
         foreach (EnemyData enemyDataScript in enemyDataScripts)
         {
-            if (enemyDataScript.enemy_Health >= 0)
-            {
-                enemyDataScript.enemy_Health -= Atkvalue;
-            }
-            Debug.Log("Found EnemyData script: " + enemyDataScript.GetType().Name);
+            enemyDataScript.enemy_Health -= Atkvalue;            
         }
     }
 }

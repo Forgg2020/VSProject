@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Player = GameObject.Find("Player");
+        print(Player);
         //if (Player = null)
         //{
         //    findObj.FindObjectbyTag("Player");

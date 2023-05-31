@@ -9,7 +9,7 @@ public class EnemyData : MonoBehaviour
 {
     /*************************引用*************************/
     FindObj findObj = new FindObj();
-    GameObject player = GameManager.Player;
+    public GameObject player;
     /**********************SingleTon**********************/
     public static EnemyData instance;
     public static GameObject[] Enemy;
@@ -23,10 +23,11 @@ public class EnemyData : MonoBehaviour
     
 
     /************************組件************************/
-    Rigidbody2D rb2D;
+    public static Rigidbody2D rb2D;
     // Start is called before the first frame update
     protected virtual void  Start()
     {
+        player = GameManager.Player;
         rb2D = this.GetComponent<Rigidbody2D>();
         targetDestination = player.transform;
     }
