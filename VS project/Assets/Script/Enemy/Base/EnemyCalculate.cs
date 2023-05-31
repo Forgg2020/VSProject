@@ -9,11 +9,11 @@ public class EnemyCalculate : MonoBehaviour
 
     private void Start()
     {
-        //enemyData
+        
     }
 
     public void MinusHealth(float i)
     {
-        //enemy_Health -= i;
+        
     }
 }
