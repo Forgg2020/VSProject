@@ -11,7 +11,7 @@ public class EnemyData : MonoBehaviour
     /*************************引用*************************/
     FindObj findObj = new FindObj();
     public GameObject player;
-
+    public Animator Anim;
     public EnemyCalculate enemyCalculate;
     /**********************SingleTon**********************/
     public static EnemyData instance;
@@ -57,6 +57,7 @@ public class EnemyData : MonoBehaviour
     }
     protected void GetSprite(int i,GameObject BodyObj,Sprite sp01, Sprite sp02)
     {
+        Anim = BodyObj.GetComponent<Animator>();
         GameObject BodySplit0 = BodyObj.transform.GetChild(0).gameObject;
         GameObject BodySplit1 = BodyObj.transform.GetChild(1).gameObject;
         SpriteRenderer SR01 = BodySplit0.GetComponent<SpriteRenderer>();
