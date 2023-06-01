@@ -1,15 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 using ToolManager;
 
 public class ChaosWarrior : EnemyData
 {
-    FindObj FindObj = new FindObj();
-    public GameObject DeadBody;
+    public int i;
+    public GameObject DeadBodyObj;
+    public Sprite[] sprite;
     protected override void Start()
     {
         base.Start();
-        Initialize(10, 5, 1, DeadBody);
+        int i = UnityEngine.Random.Range(0, 2);
+        GetAssetData();
+        GetSprite(i, DeadBodyObj, sprite[0], sprite[1]);
+        Initialize(10, 5, 1, DeadBodyObj);
+    }
+    public void GetAssetData()
+    {
+        if (i == 0)
+        {
+            DeadBodyObj = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/CharactorPrefab/SpiltCharactor/Body-LR.prefab", typeof(GameObject));
+            sprite[0] = (Sprite)AssetDatabase.LoadAssetAtPath("Assets/2D Aseet/Enemy/Splited/ChaosWarriors-Left.png", typeof(Sprite));
+            sprite[1] = (Sprite)AssetDatabase.LoadAssetAtPath("Assets/2D Aseet/Enemy/Splited/ChaosWarriors-Right.png", typeof(Sprite));
+        }
+        else if (i == 1)
+        {
+            DeadBodyObj = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/CharactorPrefab/SpiltCharactor/Body-TD.prefab", typeof(GameObject));
+            sprite[0] = (Sprite)AssetDatabase.LoadAssetAtPath("Assets/2D Aseet/Enemy/Splited/ChaosWarriors-Top.png", typeof(Sprite));
+            sprite[1] = (Sprite)AssetDatabase.LoadAssetAtPath("Assets/2D Aseet/Enemy/Splited/ChaosWarriors-Down.png", typeof(Sprite));
+        }
     }
 }

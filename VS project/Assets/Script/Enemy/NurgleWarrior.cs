@@ -3,39 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using ToolManager;
 using System;
+using UnityEditor;
 
 public class NurgleWarrior : EnemyData
 {
-    FindObj FindObj = new FindObj();
-    public GameObject DeadBody;
+    public int i;
+    public GameObject DeadBodyObj;
+    public Sprite[] sprite;
     protected override void Start()
     {
         base.Start();
-        Initialize(10, 5, 1, DeadBody);
-        int i = UnityEngine.Random.Range(0, 2);
-        if(i == 0)
+        i = enemyCalculate.whichBody;
+        GetAssetData();
+        GetSprite(i, DeadBodyObj, sprite[0], sprite[1]);
+        Initialize(10, 5, 1, DeadBodyObj);
+    }
+    public void GetAssetData()
+    {
+        if (i == 0)
         {
-            GameObject BodyObject = Resources.Load<GameObject>("Body-LR");
-            if(BodyObject != null)
-            {
-                BodyObject = DeadBody;
-            }
-            else
-            {
-                Debug.LogError("Failed to load 'Body-LR' object from resources.");
-            }
+            DeadBodyObj = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/CharactorPrefab/SpiltCharactor/Body-LR.prefab", typeof(GameObject));
+            sprite[0] = (Sprite)AssetDatabase.LoadAssetAtPath("Assets/2D Aseet/Enemy/Splited/NurgleWarriors-Left.png", typeof(Sprite));
+            sprite[1] = (Sprite)AssetDatabase.LoadAssetAtPath("Assets/2D Aseet/Enemy/Splited/NurgleWarriors-Right.png", typeof(Sprite));
         }
-        else if(i == 1) 
+        else if (i == 1)
         {
-            GameObject BodyObject = Resources.Load<GameObject>("Body-TD");
-            if (BodyObject != null)
-            {
-                BodyObject = DeadBody;
-            }
-            else
-            {
-                Debug.LogError("Failed to load 'Body-TD' object from resources.");
-            }
+            DeadBodyObj = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/CharactorPrefab/SpiltCharactor/Body-TD.prefab", typeof(GameObject));
+            sprite[0] = (Sprite)AssetDatabase.LoadAssetAtPath("Assets/2D Aseet/Enemy/Splited/NurgleWarriors-Top.png", typeof(Sprite));
+            sprite[1] = (Sprite)AssetDatabase.LoadAssetAtPath("Assets/2D Aseet/Enemy/Splited/NurgleWarriors-Down.png", typeof(Sprite));
         }
     }
 }

@@ -7,16 +7,17 @@ public class EnemyInteract : MonoBehaviour
 {
     public EnemyData enemydata;
     public EnemyCalculate enemyCalculate;
-    public delegate void OnGetAttack(float Atk);
-    public event OnGetAttack OnGetAtk;
-    public event OnGetAttack OnDying;
+    public delegate void OnDying();
+    public event OnDying OnDead;
+    SpriteRenderer spriteRenderer;
     Rigidbody2D rb2D;
 
     private void Start()
     {
+        rb2D = gameObject.GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         enemydata = gameObject.GetComponent<EnemyData>();
         enemyCalculate = gameObject.GetComponent<EnemyCalculate>();
-        rb2D = gameObject.GetComponent<Rigidbody2D>();
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -31,8 +32,11 @@ public class EnemyInteract : MonoBehaviour
         enemydata.MinusHealth(weaponDataScript.weapon_AttackDmg);
         if(enemydata.enemy_Health <= 0)
         {
+            OnDead?.Invoke();
             rb2D.simulated = false;
-            StartCoroutine(enemyCalculate.FadeOutCoroutine());
+            Color color = spriteRenderer.color;
+            color.a = 0;
+            spriteRenderer.color = color;
         }
     }
 }
