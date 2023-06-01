@@ -7,7 +7,7 @@ using UnityEngine;
 public class EnemyCalculate : MonoBehaviour
 {
     EnemyData enemyData;
-    [Header("Žré“")]
+    [Header("Žr?")]
     public int whichBody;
     
     private void Start()

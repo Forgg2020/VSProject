@@ -4,28 +4,14 @@ using UnityEngine;
 
 public class Test : MonoBehaviour
 {
-    SpriteRenderer spriteRenderer;
-    public float fadeDuration;
-    private float timer = 0f;
-    private Color startColor;
-    private Color targetColor = new Color(1f, 1f, 1f, 0f);
+    Animator anim;
+    public int i;
     // Start is called before the first frame update
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        startColor = spriteRenderer.color;
-        StartCoroutine(FadeOutCoroutine());
+        i = Random.Range(0, 2);
+        anim = GetComponent<Animator>();
+        anim.SetInteger("Test", i);
     }
 
-    public IEnumerator FadeOutCoroutine()
-    {
-        float timer = 0f;
-        while (timer < fadeDuration)
-        {
-            timer += Time.deltaTime;
-            float t = Mathf.Clamp01(timer / fadeDuration);
-            spriteRenderer.color = Color.Lerp(startColor, targetColor, t);
-            yield return null;
-        }
-    }
 }
