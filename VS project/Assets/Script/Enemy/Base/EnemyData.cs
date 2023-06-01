@@ -10,6 +10,7 @@ public class EnemyData : MonoBehaviour
     /*************************引用*************************/
     FindObj findObj = new FindObj();
     public GameObject player;
+    public virtual GameObject EnemyBody { get; private set; }
     /**********************SingleTon**********************/
     public static EnemyData instance;
     /************************抓取************************/
@@ -42,10 +43,16 @@ public class EnemyData : MonoBehaviour
         enemy_Health -= i;
     }
 
-    protected void Initialize(float health, float speed, float attackvaule)
+    protected void Initialize(float health, float speed, float attackvaule, GameObject Body)
     {
         enemy_Health = health;
         enemy_Speed = speed;
         enemy_AttackVaule = attackvaule;
+        EnemyBody = Body;
+    }
+
+    public void InitializeDeadBody()
+    {
+
     }
 }

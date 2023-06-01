@@ -1,35 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
-using ToolManager;
 using UnityEngine;
 
-public class EnemyCalculate : MonoBehaviour
+public class Test : MonoBehaviour
 {
-    EnemyData enemyData = new EnemyData();
-    [Header("érÈì")]
-    public int whichBody;
-    [Header("Ë¯êF")]
-    public SpriteRenderer spriteRenderer;
+    SpriteRenderer spriteRenderer;
     public float fadeDuration;
     private float timer = 0f;
     private Color startColor;
     private Color targetColor = new Color(1f, 1f, 1f, 0f);
-    private void Start()
+    // Start is called before the first frame update
+    void Start()
     {
-        startColor = spriteRenderer.color;
         spriteRenderer = GetComponent<SpriteRenderer>();
+        startColor = spriteRenderer.color;
+        StartCoroutine(FadeOutCoroutine());
     }
 
-    public void MinusHealth(float i)
-    {
-        
-    }
-
-    public void Dying()
-    {
-        whichBody = Random.Range(0, 2);
-    }
-    public  IEnumerator FadeOutCoroutine()
+    public IEnumerator FadeOutCoroutine()
     {
         float timer = 0f;
         while (timer < fadeDuration)
