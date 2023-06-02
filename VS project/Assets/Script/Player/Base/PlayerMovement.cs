@@ -8,7 +8,7 @@ public class PlayerMovement : CharactorManager
 {
     FindObj findObj = new FindObj();
     PlayerData playerData = new PlayerData();
-    InputSystem inputSystem = new InputSystem();
+    InputSystem inputSystem;
     Rigidbody2D rb2D;
     TrailRenderer Tr;
     GameObject weaponPoint;
@@ -18,8 +18,8 @@ public class PlayerMovement : CharactorManager
         rb2D = GetComponent<Rigidbody2D>();
         Tr = GetComponent<TrailRenderer>();
         weaponPoint = findObj.FindObjectbyName("Weapon");
+        inputSystem = GetManager().GetComponent<InputSystem>();
         GetManager().GetComponent<InputSystem>().OnFlip += Flip;
-        //GetManager().GetComponent<InputSystem>().OnDash += Dashing;
         GetManager().GetComponent<InputSystem>().OnTurnVertical += TurnVertical;
         GetManager().GetComponent<InputSystem>().OnTurnHorizontal += TurnHorizontal;
     }

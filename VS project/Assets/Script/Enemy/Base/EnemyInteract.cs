@@ -9,6 +9,8 @@ public class EnemyInteract : MonoBehaviour
     public EnemyCalculate enemyCalculate;
     public delegate void OnDying();
     public event OnDying OnDead;
+    public delegate void OnAttack(float atk);
+    public event OnAttack OnAtk;
     SpriteRenderer spriteRenderer;
     Rigidbody2D rb2D;
 
@@ -24,6 +26,11 @@ public class EnemyInteract : MonoBehaviour
         if (other.gameObject.CompareTag("Weapon"))
         {
             Geturt(other.gameObject);
+        }
+        if (other.gameObject.CompareTag("Player"))
+        {
+            OnAtk?.Invoke(enemydata.enemy_AttackVaule);
+
         }
     }
     private void Geturt(GameObject colObj)

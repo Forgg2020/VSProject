@@ -24,6 +24,9 @@ public class EnemySpawner : MonoBehaviour
     {
         Vector3 pos = new Vector3(UnityEngine.Random.Range(-spawnArea.x, spawnArea.x), UnityEngine.Random.Range(-spawnArea.y, spawnArea.y),0f);
         GameObject newEnemy = Instantiate(Enemy[EnemyNo]);
-        newEnemy.transform.position = pos;   
+        newEnemy.transform.position = pos;
+        LevelManager levelManager = FindObjectOfType<LevelManager>();
+        levelManager.AddEnemyToPool(newEnemy);
+
     }
 }
