@@ -11,16 +11,16 @@ public class EnemyDataManager : MonoBehaviour
     public EnemyBodyAnimController enemyCalculateController;
     private void Start()
     {
-        enemyData = GetComponent<EnemyData>();
-        enemyState = GetComponent<EnemyState>();
-        enemyInteract = GetComponent<EnemyInteract>();
-        enemyCalculate = GetComponent<EnemyCalculate>();
+        enemyData = gameObject.GetComponent<EnemyData>();
+        enemyState = gameObject.GetComponent<EnemyState>();
+        enemyInteract = gameObject.GetComponent<EnemyInteract>();
+        enemyCalculate = gameObject.GetComponent<EnemyCalculate>();
     }
     public void Update()
     {
     }
 
-    public float Enemy_Health => enemyData.enemy_Health;
+    public float Enemy_Health() => enemyData.enemy_Health;
     public float Enemy_Speed() => enemyData.enemy_Speed;
     public float Enemy_AttackValue() => enemyData.enemy_AttackVaule;
     public GameObject Enenmy_Body() => enemyData.EnemyBody;
