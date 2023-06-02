@@ -14,7 +14,7 @@ public class NurgleWarrior : EnemyData
     protected override void Start()
     {
         base.Start();
-        i = enemyCalculate.whichBody;
+        i = Random.Range(0, 2);
         j = Random.Range(0, 2);
         GetAssetData();
         GetSprite(i, DeadBodyObj, sprite[0], sprite[1]);

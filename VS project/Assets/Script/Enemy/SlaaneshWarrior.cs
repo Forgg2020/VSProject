@@ -12,7 +12,7 @@ public class SlaaneshWarrior : EnemyData
     protected override void Start()
     {
         base.Start();
-        i = enemyCalculate.whichBody;
+        i = Random.Range(0, 2);
         GetAssetData();
         GetSprite(i, DeadBodyObj, sprite[0], sprite[1]);
         Initialize(10, 5, 1, DeadBodyObj);

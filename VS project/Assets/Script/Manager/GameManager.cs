@@ -30,14 +30,6 @@ public class GameManager : MonoBehaviour
 
         // 其他Awake方法的逻辑
     }
-    public void Start()
-    {
-        
-    }
-    private GameManager()
-    {
-        // 初始化GameManager的逻辑
-    }
     public static GameManager Instance
     {
         get

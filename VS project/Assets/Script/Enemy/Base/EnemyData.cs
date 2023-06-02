@@ -12,7 +12,7 @@ public class EnemyData : MonoBehaviour
     FindObj findObj = new FindObj();
     public GameObject player;
     public Animator Anim;
-    public EnemyCalculate enemyCalculate;
+    EnemyDataManager enemyDataManager;
     /**********************SingleTon**********************/
     public static EnemyData instance;
     /************************抓取************************/
@@ -28,23 +28,15 @@ public class EnemyData : MonoBehaviour
 
 
     /************************組件************************/
-    public Rigidbody2D rb2D;
-    // Start is called before the first frame update
     protected virtual void Start()
     {
-        player = GameManager.Player;
-        rb2D = this.GetComponent<Rigidbody2D>();
-        targetDestination = player.transform;
-        enemyCalculate = gameObject.GetComponent<EnemyCalculate>();
-
-        
+        enemyDataManager = gameObject.GetComponent<EnemyDataManager>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        Vector3 direction = (targetDestination.position - transform.position).normalized;
-        rb2D.velocity = direction * enemy_Speed;
+        Vector3 direction = (enemyDataManager.GetPlayer().transform.position - transform.position).normalized;
+        enemyDataManager.Enenmy_Rb2D().velocity = direction * enemy_Speed;
     }
     public void MinusHealth(float i)
     {
