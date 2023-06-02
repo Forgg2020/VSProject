@@ -14,7 +14,6 @@ public class EnemyState : MonoBehaviour
     [Header("顏色")]
     public SpriteRenderer spriteRenderer;
     public float fadeDuration;
-    private float timer = 0f;
     private Color startColor;
     private Color targetColor = new Color(1f, 1f, 1f, 0f);
 

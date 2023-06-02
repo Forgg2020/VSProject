@@ -6,26 +6,18 @@ using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
+    public List<GameObject> EnemyPool;
     FindObj FindObj = new FindObj();
     public Image bloodbar;
-    public List<GameObject> EnemyPool;
     void Start()
     {
         
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void PlayerGetHurt(float atkvalue)
     {
         var Atk_percentage = atkvalue / 100;
         bloodbar.fillAmount -= Atk_percentage;
         print(Atk_percentage);
-
     }
     public void AddEnemyToPool(GameObject enemy)
     {        
@@ -35,7 +27,5 @@ public class LevelManager : MonoBehaviour
         {
             enemyInteract.OnAtk += PlayerGetHurt;
         }
-
     }
-
 }

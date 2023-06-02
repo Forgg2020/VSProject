@@ -30,7 +30,14 @@ public class EnemyInteract : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             OnAtk?.Invoke(enemydata.enemy_AttackVaule);
+        }
+    }
 
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            StartCoroutine(AttackPlayerCoroutine());
         }
     }
     private void Geturt(GameObject colObj)
@@ -44,6 +51,15 @@ public class EnemyInteract : MonoBehaviour
             Color color = spriteRenderer.color;
             color.a = 0;
             spriteRenderer.color = color;
+        }
+    }
+
+    private IEnumerator AttackPlayerCoroutine()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(2f);
+            OnAtk?.Invoke(enemydata.enemy_AttackVaule);
         }
     }
 }

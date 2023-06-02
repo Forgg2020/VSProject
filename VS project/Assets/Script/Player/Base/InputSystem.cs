@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using ToolManager;
 using UnityEngine;
 using UnityEngine.Video;
 
 public class InputSystem : MonoBehaviour 
 {
-
-    PlayerData playerData = new PlayerData();
+    PlayerData playerData;
     /********************à⁄ìÆ********************/
     public delegate void OnInputEvent(float i);
     public event OnInputEvent OnTurnHorizontal;
@@ -19,12 +19,16 @@ public class InputSystem : MonoBehaviour
 
     /********************è’éh********************/
 
+    /********************à íu********************/
+    public Transform PlayerTran;
+
     private void Update()
     {
         //Dash();
         Flip();
         TurnVertical();
         TurnHorizontal();
+        PlayerTran = FindObjectOfType<PlayerMovement>().transform;
     }
     public void TurnHorizontal()//êÖïΩà⁄ìÆ
     {

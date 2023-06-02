@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using ToolManager;
 using UnityEditor;
@@ -6,8 +6,9 @@ using UnityEngine;
 
 public class EnemyCalculate : MonoBehaviour
 {
+    FindObj findObg = new FindObj();
     EnemyData enemyData;
-    [Header("�r?")]
+    [Header("屍?")]
     public int whichBody;
     
     private void Start()
@@ -26,4 +27,5 @@ public class EnemyCalculate : MonoBehaviour
     {
        
     }
+
 }
