@@ -7,6 +7,7 @@ using System.Net.NetworkInformation;
 
 public class EnemyState : MonoBehaviour
 {
+    EnemyDataManager enemyDataManager;
     EnemyData enemyData;
     FindObj findObj = new FindObj();
     public EnemyCalculate enemyCalculate;
@@ -26,6 +27,7 @@ public class EnemyState : MonoBehaviour
     public bool isDead = false;
     public void Start()
     {
+        enemyDataManager = GetComponent<EnemyDataManager>();
         rb2D = GetComponent<Rigidbody2D>();
         enemyData = gameObject.GetComponent<EnemyData>();
         enemyCalculate = gameObject.GetComponent<EnemyCalculate>();
@@ -40,7 +42,7 @@ public class EnemyState : MonoBehaviour
         Color color = spriteRenderer.color;
         color.a = 0;
         spriteRenderer.color = color;
-        var bodyObj = enemyData.EnemyBody;
+        var bodyObj = enemyDataManager.Enenmy_Body();
         var body = enemyCalculate.whichBody;
         Instantiate(bodyObj, gameObject.transform);
         StartCoroutine(FadeOutCoroutine());

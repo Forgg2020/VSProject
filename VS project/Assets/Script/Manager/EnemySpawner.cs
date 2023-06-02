@@ -27,6 +27,5 @@ public class EnemySpawner : MonoBehaviour
         newEnemy.transform.position = pos;
         LevelManager levelManager = FindObjectOfType<LevelManager>();
         levelManager.AddEnemyToPool(newEnemy);
-
     }
 }

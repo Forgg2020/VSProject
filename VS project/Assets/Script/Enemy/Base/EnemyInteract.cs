@@ -6,6 +6,7 @@ using Completed;
 
 public class EnemyInteract : MonoBehaviour
 {
+    EnemyDataManager enemyDataManager;
     public EnemyData enemydata;
     public EnemyState enemystate;
     public EnemyCalculate enemyCalculate;
@@ -18,6 +19,7 @@ public class EnemyInteract : MonoBehaviour
     public Transform player;
     private void Start()
     {
+        enemyDataManager = new EnemyDataManager();
         rb2D = gameObject.GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         enemydata = gameObject.GetComponent<EnemyData>();
@@ -38,7 +40,7 @@ public class EnemyInteract : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Player"))
         {
-            OnAtk?.Invoke(enemydata.enemy_AttackVaule);
+            OnAtk?.Invoke(enemyDataManager.Enemy_Health);
         }
     }
 
@@ -52,8 +54,9 @@ public class EnemyInteract : MonoBehaviour
     private void Geturt(GameObject colObj)
     {
         WeaponData weaponDataScript = colObj.gameObject.GetComponent<WeaponData>();
-        enemydata.MinusHealth(weaponDataScript.weapon_AttackDmg);
-        if(enemydata.enemy_Health <= 0)
+        //Enemy_Health() -= weaponDataScript.weapon_AttackDmg;
+       enemydata.MinusHealth(weaponDataScript.weapon_AttackDmg);
+        if(enemyDataManager.Enemy_Health <= 0)
         {
             OnDead?.Invoke();
             rb2D.simulated = false;
