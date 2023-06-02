@@ -17,6 +17,11 @@ public class EnemyState : MonoBehaviour
     private float timer = 0f;
     private Color startColor;
     private Color targetColor = new Color(1f, 1f, 1f, 0f);
+
+    [Header("掉落")]
+    public GameObject[] Item;
+    public int dropRate;
+    public Transform bodyTransform;
     public void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
@@ -36,6 +41,9 @@ public class EnemyState : MonoBehaviour
         var body = enemyCalculate.whichBody;
         Instantiate(bodyObj, gameObject.transform);
         StartCoroutine(FadeOutCoroutine());
+        bodyTransform = gameObject.transform;
+        DropItem();
+
     }
     public IEnumerator FadeOutCoroutine()
     {
@@ -48,5 +56,16 @@ public class EnemyState : MonoBehaviour
             yield return null;
         }
         Destroy(gameObject);
+    }
+
+    public void DropItem()
+    {
+        int i;
+        dropRate = Random.Range(0, 2);
+        if( dropRate == 0 )
+        {
+            i = Random.Range(0, 2);
+            GameObject newItem = Instantiate(Item[i], bodyTransform.transform.position, Quaternion.identity, null);
+        }
     }
 }

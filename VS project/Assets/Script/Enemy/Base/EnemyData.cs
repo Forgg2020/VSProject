@@ -23,6 +23,7 @@ public class EnemyData : MonoBehaviour
     [field: SerializeField] public virtual float enemy_AttackVaule { get; private set; }
     [field: SerializeField] public virtual GameObject EnemyBody { get; private set; }
     [field: SerializeField] public virtual SpriteRenderer BodySprite { get; private set; }
+    [field: SerializeField] public virtual int DropRateNum { get; private set; }
     /************************事件************************/
 
 
@@ -35,6 +36,8 @@ public class EnemyData : MonoBehaviour
         rb2D = this.GetComponent<Rigidbody2D>();
         targetDestination = player.transform;
         enemyCalculate = gameObject.GetComponent<EnemyCalculate>();
+
+        
     }
 
     // Update is called once per frame
