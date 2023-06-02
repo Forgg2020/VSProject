@@ -8,6 +8,7 @@ public class NurgleWarrior : EnemyData
 {
     public int i;
     public int j;
+    public bool stf;
     public GameObject DeadBodyObj;
     public Sprite[] sprite;
     protected override void Start()
@@ -34,7 +35,5 @@ public class NurgleWarrior : EnemyData
             sprite[0] = (Sprite)AssetDatabase.LoadAssetAtPath("Assets/2D Aseet/Enemy/Splited/NurgleWarriors-Top.png", typeof(Sprite));
             sprite[1] = (Sprite)AssetDatabase.LoadAssetAtPath("Assets/2D Aseet/Enemy/Splited/NurgleWarriors-Down.png", typeof(Sprite));
         }
-        Anim = DeadBodyObj.GetComponent<Animator>();
-        Anim.SetInteger("Which", j);
     }
 }

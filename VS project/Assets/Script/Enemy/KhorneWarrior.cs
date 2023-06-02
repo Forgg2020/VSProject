@@ -25,14 +25,12 @@ public class KhorneWarrior : EnemyData
             DeadBodyObj = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/CharactorPrefab/SpiltCharactor/Body-LR.prefab", typeof(GameObject));
             sprite[0] = (Sprite)AssetDatabase.LoadAssetAtPath("Assets/2D Aseet/Enemy/Splited/KhroneWarriors-Left.png", typeof(Sprite));
             sprite[1] = (Sprite)AssetDatabase.LoadAssetAtPath("Assets/2D Aseet/Enemy/Splited/KhroneWarriors-Right.png", typeof(Sprite));
-            Anim.SetInteger("Which", j);
         }
         else if (i == 1)
         {
             DeadBodyObj = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/CharactorPrefab/SpiltCharactor/Body-TD.prefab", typeof(GameObject));
             sprite[0] = (Sprite)AssetDatabase.LoadAssetAtPath("Assets/2D Aseet/Enemy/Splited/KhroneWarriors-Top.png", typeof(Sprite));
             sprite[1] = (Sprite)AssetDatabase.LoadAssetAtPath("Assets/2D Aseet/Enemy/Splited/KhroneWarriors-Down.png", typeof(Sprite));
-            Anim.SetInteger("Which", j);
         }
     }
 }
