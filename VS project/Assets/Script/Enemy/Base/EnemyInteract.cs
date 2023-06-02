@@ -7,6 +7,7 @@ using Completed;
 public class EnemyInteract : MonoBehaviour
 {
     public EnemyData enemydata;
+    public EnemyState enemystate;
     public EnemyCalculate enemyCalculate;
     public delegate void OnDying();
     public event OnDying OnDead;
@@ -21,25 +22,13 @@ public class EnemyInteract : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         enemydata = gameObject.GetComponent<EnemyData>();
         enemyCalculate = gameObject.GetComponent<EnemyCalculate>();
+        enemystate = gameObject.GetComponent<EnemyState>();
         player = GameObject.FindWithTag("Player").transform;
     }
 
     private void Update()
     {
-        float playerPositionX = player.position.x;
-        float enemyPositionX = gameObject.transform.position.x;
-
-        // 判断玩家在敌人的左边还是右边，并根据情况调整敌人的朝向
-        if (playerPositionX < enemyPositionX)
-        {
-            // 玩家在敌人的左边，敌人朝向左边
-            gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-        }
-        else
-        {
-            // 玩家在敌人的右边，敌人朝向右边
-            gameObject.transform.localScale = new Vector3(-0.5f, 0.5f, 0.5f);
-        }
+        Fliping();
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -83,5 +72,23 @@ public class EnemyInteract : MonoBehaviour
         }
     }
 
+    public void Fliping()
+    {
+        float playerPositionX = player.position.x;
+        float enemyPositionX = gameObject.transform.position.x;
+
+        if(enemystate.isDead == false) 
+        {
+            if (playerPositionX < enemyPositionX)
+            {
+                gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            }
+            else
+            {
+                gameObject.transform.localScale = new Vector3(-0.5f, 0.5f, 0.5f);
+            }
+        }
+        
+    }
 
 }

@@ -21,6 +21,9 @@ public class EnemyState : MonoBehaviour
     public GameObject[] Item;
     public int dropRate;
     public Transform bodyTransform;
+
+    [Header("死亡")]
+    public bool isDead = false;
     public void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
@@ -32,6 +35,7 @@ public class EnemyState : MonoBehaviour
     }
     public void Dying()
     {
+        isDead = true;
         rb2D.simulated = false;
         Color color = spriteRenderer.color;
         color.a = 0;
