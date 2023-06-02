@@ -8,24 +8,14 @@ public class EnemyInteract : MonoBehaviour
 {
     EnemyDataManager enemyDataManager;
     public EnemyData enemydata;
-    public EnemyState enemystate;
-    public EnemyCalculate enemyCalculate;
     public delegate void OnDying();
     public event OnDying OnDead;
     public delegate void OnAttack(float atk);
     public event OnAttack OnAtk;
-    SpriteRenderer spriteRenderer;
-    Rigidbody2D rb2D;
-    public Transform player;
     private void Start()
     {
         enemyDataManager = gameObject.GetComponent<EnemyDataManager>();
-        rb2D = gameObject.GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
         enemydata = gameObject.GetComponent<EnemyData>();
-        enemyCalculate = gameObject.GetComponent<EnemyCalculate>();
-        enemystate = gameObject.GetComponent<EnemyState>();
-        player = GameObject.FindWithTag("Player").transform;
     }
 
     private void Update()
@@ -55,17 +45,16 @@ public class EnemyInteract : MonoBehaviour
     {
         WeaponData weaponDataScript = colObj.gameObject.GetComponent<WeaponData>();
         //Enemy_Health() -= weaponDataScript.weapon_AttackDmg;
-       enemydata.MinusHealth(weaponDataScript.weapon_AttackDmg);
+        enemydata.MinusHealth(weaponDataScript.weapon_AttackDmg);
         if(enemyDataManager.Enemy_Health() <= 0)
         {
             OnDead?.Invoke();
-            rb2D.simulated = false;
-            Color color = spriteRenderer.color;
+            enemyDataManager.Enenmy_Rb2D().simulated = false;
+            Color color = enemyDataManager.Enemy_SpirtRenderer().color;
             color.a = 0;
-            spriteRenderer.color = color;
+            enemyDataManager.Enemy_SpirtRenderer().color = color;
         }
     }
-
     private IEnumerator AttackPlayerCoroutine()
     {
         while (true)
@@ -74,13 +63,12 @@ public class EnemyInteract : MonoBehaviour
             OnAtk?.Invoke(enemydata.enemy_AttackVaule);
         }
     }
-
     public void Fliping()
     {
-        float playerPositionX = player.position.x;
+        float playerPositionX = enemyDataManager.GetPlayer().transform.position.x;
         float enemyPositionX = gameObject.transform.position.x;
 
-        if(enemystate.isDead == false) 
+        if(enemyDataManager.Enemy_DeadorNot() == false) 
         {
             if (playerPositionX < enemyPositionX)
             {
@@ -90,8 +78,6 @@ public class EnemyInteract : MonoBehaviour
             {
                 gameObject.transform.localScale = new Vector3(-0.5f, 0.5f, 0.5f);
             }
-        }
-        
+        }        
     }
-
 }

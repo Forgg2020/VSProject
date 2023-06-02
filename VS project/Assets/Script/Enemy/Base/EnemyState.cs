@@ -8,12 +8,7 @@ using System.Net.NetworkInformation;
 public class EnemyState : MonoBehaviour
 {
     EnemyDataManager enemyDataManager;
-    EnemyData enemyData;
-    FindObj findObj = new FindObj();
-    public EnemyCalculate enemyCalculate;
-    Rigidbody2D rb2D;
     [Header("顏色")]
-    public SpriteRenderer spriteRenderer;
     public float fadeDuration;
     private Color startColor;
     private Color targetColor = new Color(1f, 1f, 1f, 0f);
@@ -21,32 +16,26 @@ public class EnemyState : MonoBehaviour
     [Header("掉落")]
     public GameObject[] Item;
     public int dropRate;
-    public Transform bodyTransform;
 
     [Header("死亡")]
     public bool isDead = false;
     public void Start()
     {
         enemyDataManager = GetComponent<EnemyDataManager>();
-        rb2D = GetComponent<Rigidbody2D>();
-        enemyData = gameObject.GetComponent<EnemyData>();
-        enemyCalculate = gameObject.GetComponent<EnemyCalculate>();
         gameObject.GetComponent<EnemyInteract>().OnDead += Dying;
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        startColor = spriteRenderer.color;
+        startColor = enemyDataManager.Enemy_SpirtRenderer().color;
     }
     public void Dying()
     {
         isDead = true;
-        rb2D.simulated = false;
-        Color color = spriteRenderer.color;
+        enemyDataManager.Enenmy_Rb2D().simulated = false;
+        Color color = enemyDataManager.Enemy_SpirtRenderer().color;
         color.a = 0;
-        spriteRenderer.color = color;
+        enemyDataManager.Enemy_SpirtRenderer().color = color;
         var bodyObj = enemyDataManager.Enenmy_Body();
-        var body = enemyCalculate.whichBody;
+        var body = enemyDataManager.WhcihDeadBody();
         Instantiate(bodyObj, gameObject.transform);
         StartCoroutine(FadeOutCoroutine());
-        bodyTransform = gameObject.transform;
         DropItem();
 
     }
@@ -57,7 +46,7 @@ public class EnemyState : MonoBehaviour
         {
             timer += Time.deltaTime;
             float t = Mathf.Clamp01(timer / fadeDuration);
-            spriteRenderer.color = Color.Lerp(startColor, targetColor, t);
+            enemyDataManager.Enemy_SpirtRenderer().color = Color.Lerp(startColor, targetColor, t);
             yield return null;
         }
         Destroy(gameObject);
@@ -70,7 +59,7 @@ public class EnemyState : MonoBehaviour
         if( dropRate == 0 )
         {
             i = Random.Range(0, 2);
-            GameObject newItem = Instantiate(Item[i], bodyTransform.transform.position, Quaternion.identity, null);
+            GameObject newItem = Instantiate(Item[i], enemyDataManager.EnemyTransform().position, Quaternion.identity, null);
         }
     }
 }
