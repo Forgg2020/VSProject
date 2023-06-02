@@ -5,13 +5,13 @@ using UnityEngine;
 public class PlayerInteract : MonoBehaviour
 {
 
-    public delegate void OnPicking(Transform myTran);
+    public delegate void OnPicking();
     public event OnPicking OnPick;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag("Heart"))
         {
-            OnPick?.Invoke(gameObject.transform);
+            OnPick?.Invoke();
         }
     }
 }

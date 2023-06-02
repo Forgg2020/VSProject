@@ -11,7 +11,7 @@ public class LevelManager : MonoBehaviour
     public Image bloodbar;
     void Start()
     {
-        
+        FindObjectOfType<PlayerInteract>().OnPick += Healing;
     }
     public void PlayerGetHurt(float atkvalue)
     {
@@ -27,5 +27,11 @@ public class LevelManager : MonoBehaviour
         {
             enemyInteract.OnAtk += PlayerGetHurt;
         }
+    }
+
+    public void Healing()
+    {
+        bloodbar.fillAmount += 0.1f;
+
     }
 }

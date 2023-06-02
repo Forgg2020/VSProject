@@ -20,7 +20,7 @@ public class InputSystem : MonoBehaviour
     /********************è’éh********************/
 
     /********************à íu********************/
-    public Transform PlayerTran;
+    public  Transform PlayerTran;
 
     private void Update()
     {

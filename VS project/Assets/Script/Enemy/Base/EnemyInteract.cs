@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using ToolManager;
+using Completed;
 
 public class EnemyInteract : MonoBehaviour
 {
@@ -13,13 +14,32 @@ public class EnemyInteract : MonoBehaviour
     public event OnAttack OnAtk;
     SpriteRenderer spriteRenderer;
     Rigidbody2D rb2D;
-
+    public Transform player;
     private void Start()
     {
         rb2D = gameObject.GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         enemydata = gameObject.GetComponent<EnemyData>();
         enemyCalculate = gameObject.GetComponent<EnemyCalculate>();
+        player = GameObject.FindWithTag("Player").transform;
+    }
+
+    private void Update()
+    {
+        float playerPositionX = player.position.x;
+        float enemyPositionX = gameObject.transform.position.x;
+
+        // 判断玩家在敌人的左边还是右边，并根据情况调整敌人的朝向
+        if (playerPositionX < enemyPositionX)
+        {
+            // 玩家在敌人的左边，敌人朝向左边
+            gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+        }
+        else
+        {
+            // 玩家在敌人的右边，敌人朝向右边
+            gameObject.transform.localScale = new Vector3(-0.5f, 0.5f, 0.5f);
+        }
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -62,4 +82,6 @@ public class EnemyInteract : MonoBehaviour
             OnAtk?.Invoke(enemydata.enemy_AttackVaule);
         }
     }
+
+
 }
