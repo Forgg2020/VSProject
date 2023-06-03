@@ -6,7 +6,7 @@ using UnityEngine.Video;
 
 public class InputSystem : MonoBehaviour 
 {
-    PlayerData playerData;
+    PlayerDataManager playerDataManager;
     /********************ˆÚ“®********************/
     public delegate void OnInputEvent(float i);
     public event OnInputEvent OnTurnHorizontal;

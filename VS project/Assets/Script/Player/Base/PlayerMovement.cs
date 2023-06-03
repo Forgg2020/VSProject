@@ -6,22 +6,19 @@ using System;
 
 public class PlayerMovement : CharactorManager
 {
+    PlayerDataManager playerDataManager;
     FindObj findObj = new FindObj();
-    PlayerData playerData = new PlayerData();
-    InputSystem inputSystem;
-    Rigidbody2D rb2D;
     TrailRenderer Tr;
     GameObject weaponPoint;
     // Start is called before the first frame update
     void Start()
     {
-        rb2D = GetComponent<Rigidbody2D>();
+        playerDataManager = gameObject.GetComponent<PlayerDataManager>();
         Tr = GetComponent<TrailRenderer>();
         weaponPoint = findObj.FindObjectbyName("Weapon");
-        inputSystem = GetManager().GetComponent<InputSystem>();
-        GetManager().GetComponent<InputSystem>().OnFlip += Flip;
-        GetManager().GetComponent<InputSystem>().OnTurnVertical += TurnVertical;
-        GetManager().GetComponent<InputSystem>().OnTurnHorizontal += TurnHorizontal;
+        gameObject.GetComponent<InputSystem>().OnFlip += Flip;
+        gameObject.GetComponent<InputSystem>().OnTurnVertical += TurnVertical;
+        gameObject.GetComponent<InputSystem>().OnTurnHorizontal += TurnHorizontal;
     }
     private void FixedUpdate()
     {
@@ -52,8 +49,8 @@ public class PlayerMovement : CharactorManager
     public override void ChararctorMovement()
     {
         Vector3 currentVector;
-        currentVector = movementVector * playerData.player_Speed;
-        rb2D.velocity = currentVector;
+        currentVector = movementVector * playerDataManager.Player_Speed();
+        playerDataManager.Player_Rb2D().velocity = currentVector;
         base.ChararctorMovement();
     }
     void FacePlayer()
@@ -62,13 +59,6 @@ public class PlayerMovement : CharactorManager
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
         Vector2 direction = new Vector2(mousePosition.x - weaponPoint.transform.position.x, mousePosition.y - weaponPoint.transform.position.y);
         weaponPoint.transform.up = direction;
-    }
-
-    /***************************ùSéÊ?ôΩ*****************************/
-    public GameObject GetManager()
-    {
-        GameObject PlayerManager = findObj.FindObjectbyName("InputManager");
-        return PlayerManager;
     }
 
 

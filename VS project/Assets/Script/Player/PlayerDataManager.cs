@@ -4,23 +4,24 @@ using UnityEngine;
 
 public class PlayerDataManager : MonoBehaviour
 {
-    public GameObject Player;
     PlayerData playerData = new PlayerData();
     PlayerBuff playerBuff;
     PlayerInteract playerInteract;
     PlayerState playerState;
     PlayerMovement playerMovement;
+    InputSystem inputsystem;
     
     private void Start()
     {
-        Player = GameObject.FindGameObjectWithTag("Player");
-        playerInteract = Player.GetComponent<PlayerInteract>();
-        playerMovement = Player.GetComponent<PlayerMovement>();
-        playerBuff = GetComponent<PlayerBuff>();
-        
+        playerInteract = gameObject.GetComponent<PlayerInteract>();
+        playerMovement = gameObject.GetComponent<PlayerMovement>();
+        playerBuff = gameObject.GetComponent<PlayerBuff>();
+        inputsystem = gameObject.GetComponent<InputSystem>();
     }
 
-
+    public Transform Player_Transform => gameObject.transform;
+    public Rigidbody2D Player_Rb2D() => gameObject.GetComponent<Rigidbody2D>();
+    public float Player_Speed() => playerData.player_Speed;
     public float GetSSSSpeed() => playerBuff.Add_ExtraSpeed;
     
 
