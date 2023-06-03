@@ -16,6 +16,9 @@ public class SlaaneshWarrior : EnemyData
         GetAssetData();
         GetSprite(i, DeadBodyObj, sprite[0], sprite[1]);
         Initialize(10, 5, 1, DeadBodyObj);
+        enemy_Health = 20;
+        enemy_Speed = 7;
+        enemy_AttackVaule = 10;
     }
     public void GetAssetData()
     {

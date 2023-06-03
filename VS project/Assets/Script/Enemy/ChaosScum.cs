@@ -17,6 +17,9 @@ public class ChaosScum : EnemyData
         GetAssetData();
         GetSprite(i, DeadBodyObj, sprite[0], sprite[1]);
         Initialize(10, 5, 1, DeadBodyObj);
+        enemy_Health = 10;
+        enemy_Speed = 5;
+        enemy_AttackVaule = 5;
     }
     public void GetAssetData()
     {

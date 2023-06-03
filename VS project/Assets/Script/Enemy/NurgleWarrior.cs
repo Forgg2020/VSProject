@@ -19,7 +19,9 @@ public class NurgleWarrior : EnemyData
         GetAssetData();
         GetSprite(i, DeadBodyObj, sprite[0], sprite[1]);
         Initialize(10, 5, 1, DeadBodyObj);
-        
+        enemy_Health = 30;
+        enemy_Speed = 3;
+        enemy_AttackVaule = 10;
     }
     public void GetAssetData()
     {
