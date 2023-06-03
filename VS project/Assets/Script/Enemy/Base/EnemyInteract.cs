@@ -8,10 +8,15 @@ public class EnemyInteract : MonoBehaviour
 {
     EnemyDataManager enemyDataManager;
     public EnemyData enemydata;
+
     public delegate void OnDying();
     public event OnDying OnDead;
     public delegate void OnAttack(float atk);
     public event OnAttack OnAtk;
+    public delegate void OnHurt(GameObject whichweapon);
+    public event OnHurt BeAtk;
+
+
     private void Start()
     {
         enemyDataManager = gameObject.GetComponent<EnemyDataManager>();
@@ -43,9 +48,10 @@ public class EnemyInteract : MonoBehaviour
     }
     private void Geturt(GameObject colObj)
     {
-        WeaponData weaponDataScript = colObj.gameObject.GetComponent<WeaponData>();
+        //WeaponData weaponDataScript = colObj.gameObject.GetComponent<WeaponData>();
         //Enemy_Health() -= weaponDataScript.weapon_AttackDmg;
-        enemydata.MinusHealth(weaponDataScript.weapon_AttackDmg);
+        BeAtk?.Invoke(colObj);
+        //EnemyCalculate.MinusHealth(weaponDataScript.weapon_AttackDmg);
         if(enemyDataManager.Enemy_Health() <= 0)
         {
             OnDead?.Invoke();

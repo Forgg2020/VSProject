@@ -16,9 +16,6 @@ public class EnemyDataManager : MonoBehaviour
         enemyInteract = gameObject.GetComponent<EnemyInteract>();
         enemyCalculate = gameObject.GetComponent<EnemyCalculate>();
     }
-    public void Update()
-    {
-    }
     public float Enemy_Health() => enemyData.enemy_Health;
     public float Enemy_Speed() => enemyData.enemy_Speed;
     public float Enemy_AttackValue() => enemyData.enemy_AttackVaule;

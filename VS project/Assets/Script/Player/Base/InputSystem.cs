@@ -30,7 +30,7 @@ public class InputSystem : MonoBehaviour
         TurnHorizontal();
         PlayerTran = FindObjectOfType<PlayerMovement>().transform;
     }
-    public void TurnHorizontal()//…•½ˆÚ“®
+    public void TurnHorizontal()//?•½ˆÚ“®
     {
         var horizontal = Input.GetAxis("Horizontal");
         if (horizontal != 0)
@@ -38,7 +38,7 @@ public class InputSystem : MonoBehaviour
             OnTurnHorizontal?.Invoke(horizontal);
         }
     }
-    public void TurnVertical()//‚’¼ˆÚ“®
+    public void TurnVertical()//?’¼ˆÚ“®
     {
         var vertical = Input.GetAxis("Vertical");
         if (vertical != 0)

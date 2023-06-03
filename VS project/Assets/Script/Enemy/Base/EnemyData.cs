@@ -18,7 +18,7 @@ public class EnemyData : MonoBehaviour
     /************************抓取************************/
     [field: SerializeField] Transform targetDestination;
     /************************數值************************/
-    [field: SerializeField] public virtual float enemy_Health { get; private set; }
+    [field: SerializeField] public virtual float enemy_Health { get;  set; }
     [field: SerializeField] public virtual float enemy_Speed { get; private set; }
     [field: SerializeField] public virtual float enemy_AttackVaule { get; private set; }
     [field: SerializeField] public virtual GameObject EnemyBody { get; private set; }
