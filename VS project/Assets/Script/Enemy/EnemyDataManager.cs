@@ -23,7 +23,7 @@ public class EnemyDataManager : MonoBehaviour
     public bool Enemy_DeadorNot() => enemyState.isDead;
     public GameObject Enenmy_Body() => enemyData.EnemyBody;
     public Transform EnemyTransform() => gameObject.transform;
-    public GameObject GetPlayer() => GameObject.FindGameObjectWithTag("Player");
-    public Rigidbody2D Enenmy_Rb2D() => gameObject.GetComponent<Rigidbody2D>();
-    public SpriteRenderer Enemy_SpirtRenderer() => GetComponent<SpriteRenderer>();
+    public GameObject GetPlayer() => enemyData.player;
+    public Rigidbody2D Enenmy_Rb2D() => enemyData.rb2D;
+    public SpriteRenderer Enemy_SpirtRenderer() => enemyData.BodySprite;
 }

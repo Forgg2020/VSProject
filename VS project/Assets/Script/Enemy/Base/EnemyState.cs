@@ -10,6 +10,7 @@ public class EnemyState : MonoBehaviour
     EnemyDataManager enemyDataManager;
     [Header("顏色")]
     public float fadeDuration;
+    private SpriteRenderer EnemySprite;
     private Color startColor;
     private Color targetColor = new Color(1f, 1f, 1f, 0f);
 
@@ -21,9 +22,10 @@ public class EnemyState : MonoBehaviour
     public bool isDead = false;
     public void Start()
     {
-        enemyDataManager = GetComponent<EnemyDataManager>();
+        enemyDataManager = gameObject.GetComponent<EnemyDataManager>();
+        EnemySprite = gameObject.GetComponent<SpriteRenderer>();
+        startColor = EnemySprite.color;
         gameObject.GetComponent<EnemyInteract>().OnDead += Dying;
-        startColor = enemyDataManager.Enemy_SpirtRenderer().color;
     }
     public void Dying()
     {
@@ -32,9 +34,7 @@ public class EnemyState : MonoBehaviour
         Color color = enemyDataManager.Enemy_SpirtRenderer().color;
         color.a = 0;
         enemyDataManager.Enemy_SpirtRenderer().color = color;
-        var bodyObj = enemyDataManager.Enenmy_Body();
-        var body = enemyDataManager.WhcihDeadBody();
-        Instantiate(bodyObj, gameObject.transform);
+        Instantiate(enemyDataManager.Enenmy_Body(), gameObject.transform);
         StartCoroutine(FadeOutCoroutine());
         DropItem();
 
@@ -49,6 +49,7 @@ public class EnemyState : MonoBehaviour
             enemyDataManager.Enemy_SpirtRenderer().color = Color.Lerp(startColor, targetColor, t);
             yield return null;
         }
+
         Destroy(gameObject);
     }
 
@@ -59,7 +60,8 @@ public class EnemyState : MonoBehaviour
         if( dropRate == 0 )
         {
             i = Random.Range(0, 2);
-            GameObject newItem = Instantiate(Item[i], enemyDataManager.EnemyTransform().position, Quaternion.identity, null);
+            GameObject newItem = Instantiate(Item[i], enemyDataManager.EnemyTransform().position, Quaternion.identity);
+            newItem.transform.SetParent(null);
         }
     }
 }

@@ -27,14 +27,14 @@ public class ChaosScum : EnemyData
         if (i == 0)
         {
             DeadBodyObj = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/CharactorPrefab/SpiltCharactor/Body-LR.prefab", typeof(GameObject));
-            sprite[0] = (Sprite)AssetDatabase.LoadAssetAtPath("Assets/2D Aseet/Enemy/Splited/Chaos scum-Left.png", typeof(Sprite));
-            sprite[1] = (Sprite)AssetDatabase.LoadAssetAtPath("Assets/2D Aseet/Enemy/Splited/Chaos scum-Right.png", typeof(Sprite));
+            sprite[0] = (Sprite)AssetDatabase.LoadAssetAtPath("Assets/2D Aseet/Enemy/Splited/Chaosscum-Left.png", typeof(Sprite));
+            sprite[1] = (Sprite)AssetDatabase.LoadAssetAtPath("Assets/2D Aseet/Enemy/Splited/Chaosscum-Right.png", typeof(Sprite));
         }
         else if (i == 1) 
         {
             DeadBodyObj = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/CharactorPrefab/SpiltCharactor/Body-TD.prefab", typeof(GameObject));
-            sprite[0] = (Sprite)AssetDatabase.LoadAssetAtPath("Assets/2D Aseet/Enemy/Splited/Chaos scum-Top.png", typeof(Sprite));
-            sprite[1] = (Sprite)AssetDatabase.LoadAssetAtPath("Assets/2D Aseet/Enemy/Splited/Chaos scum-Down.png", typeof(Sprite));
+            sprite[0] = (Sprite)AssetDatabase.LoadAssetAtPath("Assets/2D Aseet/Enemy/Splited/Chaosscum-Top.png", typeof(Sprite));
+            sprite[1] = (Sprite)AssetDatabase.LoadAssetAtPath("Assets/2D Aseet/Enemy/Splited/Chaosscum-Down.png", typeof(Sprite));
         }
     }
 }
