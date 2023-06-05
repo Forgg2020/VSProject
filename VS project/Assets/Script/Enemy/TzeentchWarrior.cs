@@ -9,23 +9,24 @@ public class TzeentchWarrior : EnemyData
     protected override void Start()
     {
         base.Start();
-        WhichSpiltBody = Random.Range(0, 2);
-        WhichAnim = Random.Range(0, 2);
+        i = Random.Range(0, 2);
+        j = Random.Range(0, 2);
         GetAssetData();
         GetBody();
         enemy_Health = 20;
         enemy_Speed = 5;
         enemy_AttackVaule = 20;
+        EnemyBody = DeadBodyObj;
     }
     public void GetAssetData()
     {
-        if (WhichSpiltBody == 0)
+        if (i == 0)
         {
             DeadBodyObj = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/CharactorPrefab/SpiltCharactor/Body-LR.prefab", typeof(GameObject));
             DeadBodysprite[0] = (Sprite)AssetDatabase.LoadAssetAtPath("Assets/2D Aseet/Enemy/Splited/Chaos scum-Left.png", typeof(Sprite));
             DeadBodysprite[1] = (Sprite)AssetDatabase.LoadAssetAtPath("Assets/2D Aseet/Enemy/Splited/Chaos scum-Right.png", typeof(Sprite));
         }
-        else if (WhichSpiltBody == 1)
+        else if (i == 1)
         {
             DeadBodyObj = (GameObject)AssetDatabase.LoadAssetAtPath("Assets/CharactorPrefab/SpiltCharactor/Body-TD.prefab", typeof(GameObject));
             DeadBodysprite[0] = (Sprite)AssetDatabase.LoadAssetAtPath("Assets/2D Aseet/Enemy/Splited/Chaos scum-Top.png", typeof(Sprite));
@@ -36,7 +37,6 @@ public class TzeentchWarrior : EnemyData
     {
         transform.GetChild(0).transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = DeadBodysprite[0];
         transform.GetChild(0).transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = DeadBodysprite[1];
-        EnemyBody = DeadBodyObj;
     }
 }
 

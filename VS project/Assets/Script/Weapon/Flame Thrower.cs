@@ -15,7 +15,7 @@ public class FlameThrower : MonoBehaviour
     [SerializeField] public bool see;
 
     [SerializeField] public SpriteRenderer spriteRenderer;
-    [SerializeField] private Collider2D collider2D;
+    public new Collider2D collider2D;
 
     private void Start()
     {

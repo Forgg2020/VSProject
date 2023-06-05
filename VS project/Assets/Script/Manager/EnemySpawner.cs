@@ -28,8 +28,11 @@ public class EnemySpawner : MonoBehaviour
 
     private void UpgradeEnemy()
     {
-        i = i + 1;
-        spawnTimer = spawnTimer + 1;
+        if(i < 6)
+        {
+            i = i + 1;
+            spawnTimer = spawnTimer + 1;
+        }
     }
 
     private void SpawnNormalEnemy()

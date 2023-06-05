@@ -38,7 +38,6 @@ public class EnemyState : MonoBehaviour
         EnemyDeadBody.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = enemyDataManager.Enemy_DeadSprite01();
         EnemyDeadBody.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = enemyDataManager.Enemy_DeadSprite02();
         Instantiate(EnemyDeadBody, gameObject.transform);
-
         StartCoroutine(FadeOutCoroutine());
         DropItem();
     }

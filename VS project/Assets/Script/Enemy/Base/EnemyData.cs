@@ -9,15 +9,15 @@ using UnityEditor;
 public class EnemyData : MonoBehaviour
 {
     /*************************引用*************************/
-    EnemyDataManager enemyDataManager;
     public GameObject player;
     public Animator Anim;
     public Rigidbody2D rb2D;
     public SpriteRenderer BodySprite;
-    public int WhichSpiltBody;
-    public int WhichAnim;
+    public int i;
+    public int j;
     public GameObject DeadBodyObj;
     public Sprite[] DeadBodysprite;
+    EnemyDataManager enemyDataManager;
     /**********************SingleTon**********************/
     public static EnemyData instance;
     /************************抓取************************/
@@ -51,10 +51,20 @@ public class EnemyData : MonoBehaviour
         enemy_Health -= i;
     }
 
-    public void Initialize(float health, float speed, float attackvaule)
+    public void Initialize(float health, float speed, float attackvaule,GameObject enemyBody)
     {
         enemy_Health = health;
         enemy_Speed = speed;
         enemy_AttackVaule = attackvaule;
+        EnemyBody = enemyBody;
     }
+    //public void GetSprite(int i, GameObject BodyObj, Sprite sp01, Sprite sp02)
+    //{
+    //    GameObject BodySplit0 = BodyObj.transform.GetChild(0).gameObject;
+    //    GameObject BodySplit1 = BodyObj.transform.GetChild(1).gameObject;
+    //    SpriteRenderer SR01 = BodySplit0.GetComponent<SpriteRenderer>();
+    //    SpriteRenderer SR02 = BodySplit1.GetComponent<SpriteRenderer>();
+    //    SR01.sprite = sp01;
+    //    SR02.sprite = sp02;
+    //}
 }

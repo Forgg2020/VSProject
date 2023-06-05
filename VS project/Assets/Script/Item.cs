@@ -7,13 +7,11 @@ public class Item : MonoBehaviour
     public Transform target;
     public float moveDuration = 0.5f;
     public bool isMoving;
-    void Start()
-    {
-        //FindObjectOfType<PlayerInteract>().OnPick += MoveToPlayer;
-    }
+    public Vector3 targetPosition;
     private void Update()
     {
         target = FindObjectOfType<PlayerInteract>().transform;
+        targetPosition = target.transform.position;
     }
     protected void MoveToPlayer()
     {
@@ -26,8 +24,7 @@ public class Item : MonoBehaviour
         isMoving = true;
         float timer = 0f;
 
-        Vector3 startPosition = transform.position;
-        Vector3 targetPosition = target.position;
+        Vector3 startPosition = gameObject.transform.position;
 
         while (timer < moveDuration)
         {

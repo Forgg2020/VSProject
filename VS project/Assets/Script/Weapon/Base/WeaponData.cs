@@ -14,7 +14,7 @@ public class WeaponData : MonoBehaviour
 
     [field: SerializeField] public SpriteRenderer spriteRenderer;
     [field: SerializeField] public AudioSource audioSource;
-    [field: SerializeField] public Collider2D collider2D;
+    public new Collider2D collider2D;
 
     private void Start()
     {

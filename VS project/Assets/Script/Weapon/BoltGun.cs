@@ -15,11 +15,11 @@ public class BoltGun : MonoBehaviour
     [SerializeField] public bool see;
 
     [SerializeField] public SpriteRenderer spriteRenderer;
-    [SerializeField] private Collider2D collider2D;
-
+    public new Collider2D collider2D;
     private void Start()
     {
-        weapon_Animator = GetComponent<Animator>(); 
+        weapon_Animator = GetComponent<Animator>();
+        collider2D= GetComponent<Collider2D>();
     }
     private void Update()
     {
