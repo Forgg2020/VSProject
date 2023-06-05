@@ -11,10 +11,12 @@ public class LevelManager : MonoBehaviour
     FindObj FindObj = new FindObj();
     public Image bloodbar;
     public int HowManyEnemyDead;
+    private bool hasTakenDamage = false;
     //Item
     public Transform target;
     public float moveDuration = 0.5f;
     public bool isMoving;
+    public float timer = 0f;
 
     public delegate void OnLevelUpgrade();
     public event OnLevelUpgrade OnUpgrade;
@@ -41,11 +43,16 @@ public class LevelManager : MonoBehaviour
     }
     public void PlayerGetHurt(float atkvalue)
     {
+        timer = 0f;
         var Atk_percentage = atkvalue / 100;
         bloodbar.fillAmount -= Atk_percentage;
         print(Atk_percentage);
-    }
 
+        hasTakenDamage = true;
+        FindObjectOfType<EnemyInteract>().OnAtk -= PlayerGetHurt;
+
+        StartCoroutine(AttackFreq());
+    }
     public void Healing()
     {
         bloodbar.fillAmount += 0.1f;
@@ -106,5 +113,16 @@ public class LevelManager : MonoBehaviour
         }
         Destroy(Item);
         isMoving = false;
+    }
+
+    public IEnumerator AttackFreq()
+    {
+        while (timer < 0.5f) 
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        FindObjectOfType<EnemyInteract>().OnAtk += PlayerGetHurt;
+
     }
 }
