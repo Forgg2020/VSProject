@@ -12,7 +12,6 @@ public class KhorneWarrior : EnemyData
         i = Random.Range(0, 2);
         j = Random.Range(0, 2);
         GetAssetData();
-        Initialize(10, 5, 1, DeadBodyObj);
         GetBody();
         enemy_Health = 20;
         enemy_Speed = 5;

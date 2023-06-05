@@ -37,7 +37,7 @@ public class EnemyInteract : MonoBehaviour
         }
         if (other.gameObject.CompareTag("Player"))
         {
-            OnAtk?.Invoke(enemyDataManager.Enemy_Health());
+            OnAtk?.Invoke(enemyDataManager.Enemy_AttackValue());
         }
     }
 

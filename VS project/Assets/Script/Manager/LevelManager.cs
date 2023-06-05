@@ -21,8 +21,8 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         //FindObjectOfType<PlayerInteract>().OnPick += Healing;
+        FindObjectOfType<EnemyInteract>().OnAtk += PlayerGetHurt;
         FindObjectOfType<PlayerInteract>().OnPick += MoveToPlayer;
-        //FindObjectOfType<EnemyInteract>().OnDead += RemoveEnemyToPool;
     }
     public void AddEnemyToPool(GameObject enemy)
     {        
@@ -104,7 +104,6 @@ public class LevelManager : MonoBehaviour
 
             yield return null;
         }
-        //Item.SetActive(false);
         Destroy(Item);
         isMoving = false;
     }

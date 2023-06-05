@@ -37,7 +37,6 @@ public class Item : MonoBehaviour
             yield return null;
         }
         gameObject.SetActive(false);
-        //Destroy(gameObject);
         isMoving = false;
     }
 }
