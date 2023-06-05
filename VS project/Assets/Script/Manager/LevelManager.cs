@@ -47,9 +47,7 @@ public class LevelManager : MonoBehaviour
         var Atk_percentage = atkvalue / 100;
         bloodbar.fillAmount -= Atk_percentage;
         print(Atk_percentage);
-
         hasTakenDamage = true;
-        FindObjectOfType<EnemyInteract>().OnAtk -= PlayerGetHurt;
 
         StartCoroutine(AttackFreq());
     }
@@ -122,7 +120,5 @@ public class LevelManager : MonoBehaviour
             timer += Time.deltaTime;
             yield return null;
         }
-        FindObjectOfType<EnemyInteract>().OnAtk += PlayerGetHurt;
-
     }
 }
