@@ -34,10 +34,13 @@ public class EnemyState : MonoBehaviour
         Color color = enemyDataManager.Enemy_SpirtRenderer().color;
         color.a = 0;
         enemyDataManager.Enemy_SpirtRenderer().color = color;
-        Instantiate(enemyDataManager.Enenmy_Body(), gameObject.transform);
+        GameObject EnemyDeadBody = enemyDataManager.Enenmy_Body();
+        EnemyDeadBody.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = enemyDataManager.Enemy_DeadSprite01();
+        EnemyDeadBody.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = enemyDataManager.Enemy_DeadSprite02();
+        Instantiate(EnemyDeadBody, gameObject.transform);
+
         StartCoroutine(FadeOutCoroutine());
         DropItem();
-
     }
     public IEnumerator FadeOutCoroutine()
     {
@@ -49,7 +52,6 @@ public class EnemyState : MonoBehaviour
             enemyDataManager.Enemy_SpirtRenderer().color = Color.Lerp(startColor, targetColor, t);
             yield return null;
         }
-
         Destroy(gameObject);
     }
 

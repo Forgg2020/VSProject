@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
+    EnemyDataManager enemyDataManager;
     public List<GameObject> EnemyPool;
     FindObj FindObj = new FindObj();
     public Image bloodbar;
@@ -21,6 +22,7 @@ public class LevelManager : MonoBehaviour
     {
         //FindObjectOfType<PlayerInteract>().OnPick += Healing;
         FindObjectOfType<PlayerInteract>().OnPick += MoveToPlayer;
+        //FindObjectOfType<EnemyInteract>().OnDead += RemoveEnemyToPool;
     }
     public void AddEnemyToPool(GameObject enemy)
     {        
@@ -31,6 +33,11 @@ public class LevelManager : MonoBehaviour
             enemyInteract.OnAtk += PlayerGetHurt;
             enemyInteract.OnDead += ConflictUpgrade;
         }
+    }
+
+    public void RemoveEnemyToPool(GameObject enemy)
+    {
+        EnemyPool.Remove(enemy);
     }
     public void PlayerGetHurt(float atkvalue)
     {

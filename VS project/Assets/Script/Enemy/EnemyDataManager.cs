@@ -26,4 +26,6 @@ public class EnemyDataManager : MonoBehaviour
     public GameObject GetPlayer() => enemyData.player;
     public Rigidbody2D Enenmy_Rb2D() => enemyData.rb2D;
     public SpriteRenderer Enemy_SpirtRenderer() => enemyData.BodySprite;
+    public Sprite Enemy_DeadSprite01() => enemyData.DeadBodysprite[0];
+    public Sprite Enemy_DeadSprite02() => enemyData.DeadBodysprite[1];
 }

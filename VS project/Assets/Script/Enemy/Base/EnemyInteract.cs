@@ -7,6 +7,7 @@ using Completed;
 public class EnemyInteract : MonoBehaviour
 {
     EnemyDataManager enemyDataManager;
+    LevelManager levelManager;
     public EnemyData enemydata;
 
     public delegate void OnDying();
@@ -19,6 +20,7 @@ public class EnemyInteract : MonoBehaviour
 
     private void Start()
     {
+        levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();    
         enemyDataManager = gameObject.GetComponent<EnemyDataManager>();
         enemydata = gameObject.GetComponent<EnemyData>();
     }
@@ -47,11 +49,8 @@ public class EnemyInteract : MonoBehaviour
         }
     }
     private void Geturt(GameObject colObj)
-    {
-        //WeaponData weaponDataScript = colObj.gameObject.GetComponent<WeaponData>();
-        //Enemy_Health() -= weaponDataScript.weapon_AttackDmg;
+    {        
         BeAtk?.Invoke(colObj);
-        //EnemyCalculate.MinusHealth(weaponDataScript.weapon_AttackDmg);
         if(enemyDataManager.Enemy_Health() <= 0)
         {
             OnDead?.Invoke();
@@ -59,6 +58,7 @@ public class EnemyInteract : MonoBehaviour
             Color color = enemyDataManager.Enemy_SpirtRenderer().color;
             color.a = 0;
             enemyDataManager.Enemy_SpirtRenderer().color = color;
+            levelManager.RemoveEnemyToPool(gameObject);
         }
     }
     private IEnumerator AttackPlayerCoroutine()
