@@ -29,6 +29,8 @@ public class EnemyData : MonoBehaviour
     [field: SerializeField] public virtual GameObject EnemyBody { get;  set; }
     //[field: SerializeField] public virtual SpriteRenderer BodySprite { get;  set; }
     [field: SerializeField] public virtual int DropRateNum { get; private set; }
+
+    public Transform EnemyTransform;
     /************************事件************************/
 
 
@@ -45,6 +47,7 @@ public class EnemyData : MonoBehaviour
     {
         Vector3 direction = (player.transform.position - transform.position).normalized;
         rb2D.velocity = direction * enemy_Speed;
+        EnemyTransform = gameObject.transform;
     }
     public void MinusHealth(float i)
     {

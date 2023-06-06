@@ -10,7 +10,7 @@ public class EnemyInteract : MonoBehaviour
     LevelManager levelManager;
     public EnemyData enemydata;
 
-    public delegate void OnDying();
+    public delegate void OnDying(GameObject whichenemy);
     public event OnDying OnDead;
     public delegate void OnAttack(float atk);
     public event OnAttack OnAtk;
@@ -19,7 +19,9 @@ public class EnemyInteract : MonoBehaviour
 
     public bool canEtk = true;
 
-
+    [Header("掉落")]
+    public GameObject[] Item;
+    public int dropRate;
     private void Start()
     {
         levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();    
@@ -61,12 +63,13 @@ public class EnemyInteract : MonoBehaviour
         BeAtk?.Invoke(colObj);
         if(enemyDataManager.Enemy_Health() <= 0)
         {
-            OnDead?.Invoke();
+            OnDead?.Invoke(gameObject);
             enemyDataManager.Enenmy_Rb2D().simulated = false;
             Color color = enemyDataManager.Enemy_SpirtRenderer().color;
             color.a = 0;
             enemyDataManager.Enemy_SpirtRenderer().color = color;
             levelManager.RemoveEnemyToPool(gameObject);
+            print("死了");
         }
     }
     public void Fliping()

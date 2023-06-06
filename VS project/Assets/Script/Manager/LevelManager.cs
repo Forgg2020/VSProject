@@ -13,11 +13,13 @@ public class LevelManager : MonoBehaviour
     public int HowManyEnemyDead;
 
     //Item
+    [Header("掉落")]
     public Transform target;
     public float moveDuration = 0.5f;
     public bool isMoving;
     public bool canAtk = true;
-
+    public GameObject[] Item;
+    public int dropRate;
     //Camera
     public GameObject Camera;
     public float speed = 2f;
@@ -27,6 +29,7 @@ public class LevelManager : MonoBehaviour
     {
         //FindObjectOfType<PlayerInteract>().OnPick += Healing;
         FindObjectOfType<EnemyInteract>().OnAtk += PlayerGetHurt;
+        FindObjectOfType<EnemyInteract>().OnDead += DropItem;
         FindObjectOfType<PlayerInteract>().OnPick += MoveToPlayer;
     }
     public void AddEnemyToPool(GameObject enemy)
@@ -37,6 +40,24 @@ public class LevelManager : MonoBehaviour
         {
             enemyInteract.OnAtk += PlayerGetHurt;
             enemyInteract.OnDead += ConflictUpgrade;
+            SubscribeToOnDead(enemyInteract);
+        }
+    }
+    private void SubscribeToOnDead(EnemyInteract enemyInteract)
+    {
+        enemyInteract.OnDead += DropItem;
+    }
+    public void DropItem(GameObject whichEnemydying)
+    {
+
+        print("知道了");
+        int i;
+        dropRate = Random.Range(0, 2);
+        if (dropRate == 0)
+        {
+            i = Random.Range(0, 2);
+            GameObject newItem = Instantiate(Item[i], whichEnemydying.transform.position, Quaternion.identity);
+            newItem.transform.SetParent(null);
         }
     }
 
@@ -60,7 +81,7 @@ public class LevelManager : MonoBehaviour
         bloodbar.fillAmount += 0.1f;
     }
 
-    public void ConflictUpgrade()
+    public void ConflictUpgrade(GameObject whichenemy)
     {
         HowManyEnemyDead = HowManyEnemyDead + 1;
         if(HowManyEnemyDead >= 10)

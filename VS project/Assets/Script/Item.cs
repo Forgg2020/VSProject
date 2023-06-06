@@ -8,10 +8,18 @@ public class Item : MonoBehaviour
     public float moveDuration = 0.5f;
     public bool isMoving;
     public Vector3 targetPosition;
+    public Vector3 startPosition;
+    private void Start()
+    {
+        startPosition = gameObject.transform.position;
+    }
+
     private void Update()
     {
         target = FindObjectOfType<PlayerInteract>().transform;
         targetPosition = target.transform.position;
+        startPosition = transform.position;
+
     }
     protected void MoveToPlayer()
     {
@@ -23,8 +31,7 @@ public class Item : MonoBehaviour
     {
         isMoving = true;
         float timer = 0f;
-
-        Vector3 startPosition = gameObject.transform.position;
+        
 
         while (timer < moveDuration)
         {

@@ -22,7 +22,7 @@ public class EnemyDataManager : MonoBehaviour
     public int WhcihDeadBody() => enemyCalculate.whichBody;
     public bool Enemy_DeadorNot() => enemyState.isDead;
     public GameObject Enenmy_Body() => enemyData.EnemyBody;
-    public Transform EnemyTransform() => gameObject.transform;
+    public Transform EnemyTransform() => enemyData.EnemyTransform;
     public GameObject GetPlayer() => enemyData.player;
     public Rigidbody2D Enenmy_Rb2D() => enemyData.rb2D;
     public SpriteRenderer Enemy_SpirtRenderer() => enemyData.BodySprite;

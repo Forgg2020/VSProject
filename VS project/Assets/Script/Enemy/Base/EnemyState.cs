@@ -27,7 +27,7 @@ public class EnemyState : MonoBehaviour
         startColor = EnemySprite.color;
         gameObject.GetComponent<EnemyInteract>().OnDead += Dying;
     }
-    public void Dying()
+    public void Dying(GameObject whichenemy)
     {
         isDead = true;
         enemyDataManager.Enenmy_Rb2D().simulated = false;
@@ -39,7 +39,7 @@ public class EnemyState : MonoBehaviour
         EnemyDeadBody.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = enemyDataManager.Enemy_DeadSprite02();
         Instantiate(EnemyDeadBody, gameObject.transform);
         StartCoroutine(FadeOutCoroutine());
-        DropItem();
+        //DropItem();
     }
     public IEnumerator FadeOutCoroutine()
     {
