@@ -7,6 +7,7 @@ public class LazerGun : WeaponData
 {
     public GameObject BulletPrefab;
     public GameObject BulletObj;
+    public GameObject LaserGun;
     public new void Start()
     {
         weapon_AttackFreq = 2;
@@ -14,6 +15,7 @@ public class LazerGun : WeaponData
         weapon_AttackDmg = 10f;
         weapon_AttackRange = 10;
         weapon_AttackRepel = 10;
+        spriteRenderer = LaserGun.GetComponent<SpriteRenderer>();
     }
 
     public void Shooting()

@@ -20,7 +20,7 @@ public class WeaponData : MonoBehaviour
     public bool isFacingRight = false;
     public void Start()
     {
-        weapon_Animator = GetComponent<Animator>();
+        weapon_Animator = gameObject.GetComponent<Animator>();
     }
     private void Update()
     {
@@ -31,10 +31,10 @@ public class WeaponData : MonoBehaviour
         weapon_AttackFreq -= Time.deltaTime;
         if (weapon_AttackFreq <= 0)
         {
+            spriteRenderer.enabled = true;
             audioSource.Play();
             weapon_Animator.SetBool("Atk", true);
             collider2D.enabled = true;
-            spriteRenderer.enabled = true;
         }
     }
 
@@ -44,6 +44,7 @@ public class WeaponData : MonoBehaviour
         collider2D.enabled = false;
         spriteRenderer.enabled = false;
         weapon_Animator.SetBool("Atk", false);
+        Attacking();
     }
     
 }
