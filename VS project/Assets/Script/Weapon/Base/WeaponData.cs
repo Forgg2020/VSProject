@@ -1,6 +1,8 @@
+using Completed;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WeaponData : MonoBehaviour
 {
@@ -15,8 +17,8 @@ public class WeaponData : MonoBehaviour
     [field: SerializeField] public SpriteRenderer spriteRenderer;
     [field: SerializeField] public AudioSource audioSource;
     public new Collider2D collider2D;
-
-    private void Start()
+    public bool isFacingRight = false;
+    public void Start()
     {
         weapon_Animator = GetComponent<Animator>();
     }
@@ -43,4 +45,5 @@ public class WeaponData : MonoBehaviour
         spriteRenderer.enabled = false;
         weapon_Animator.SetBool("Atk", false);
     }
+    
 }

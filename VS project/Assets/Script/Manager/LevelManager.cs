@@ -11,12 +11,16 @@ public class LevelManager : MonoBehaviour
     FindObj FindObj = new FindObj();
     public Image bloodbar;
     public int HowManyEnemyDead;
+
     //Item
     public Transform target;
     public float moveDuration = 0.5f;
     public bool isMoving;
     public bool canAtk = true;
 
+    //Camera
+    public GameObject Camera;
+    public float speed = 2f;
     public delegate void OnLevelUpgrade();
     public event OnLevelUpgrade OnUpgrade;
     void Start()
@@ -118,4 +122,10 @@ public class LevelManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         canAtk = true;
     }
+
+    private void Update()
+    {
+        Vector3 newPos = new Vector3(target.position.x, target.position.y, -10);
+    }
+
 }
