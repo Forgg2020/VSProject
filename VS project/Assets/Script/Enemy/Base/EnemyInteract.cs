@@ -33,7 +33,7 @@ public class EnemyInteract : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Weapon"))
+        if (other.gameObject.CompareTag("Weapon") )
         {
             Geturt(other.gameObject);
         }

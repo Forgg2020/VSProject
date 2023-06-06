@@ -9,7 +9,7 @@ public class PlayerInteract : MonoBehaviour
     public event OnPicking OnPick;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Heart"))
+        if(collision.gameObject.CompareTag("Heart")|| collision.gameObject.CompareTag("Soul"))
         {
             OnPick?.Invoke(collision.gameObject);
         }

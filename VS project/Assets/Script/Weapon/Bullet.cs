@@ -15,7 +15,6 @@ public class Bullet : MonoBehaviour
     private void Start()
     {
         PlayerObj = GameObject.FindGameObjectWithTag("Player");
-        //PlayerObj.GetComponent<InputSystem>().OnFlip += GetFlip;
         PlayerVec = PlayerObj.transform.rotation.eulerAngles;
         Destroy(gameObject, lifetime);
     }
@@ -31,10 +30,9 @@ public class Bullet : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            gameObject.SetActive(false);
-            //Destroy(gameObject);
+            Destroy(gameObject);
+
         }
-        // 摧毀子彈物件
     }
     public void GetFlip(float mouse)//轉向
     {
