@@ -28,4 +28,6 @@ public class EnemyDataManager : MonoBehaviour
     public SpriteRenderer Enemy_SpirtRenderer() => enemyData.BodySprite;
     public Sprite Enemy_DeadSprite01() => enemyData.DeadBodysprite[0];
     public Sprite Enemy_DeadSprite02() => enemyData.DeadBodysprite[1];
+    public float Enemy_AtkFrqTimer() => enemyCalculate.timer;
+    public bool Enemy_CanAttack() => enemyCalculate.AtkFreq;
 }

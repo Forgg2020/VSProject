@@ -17,6 +17,8 @@ public class EnemyInteract : MonoBehaviour
     public delegate void OnHurt(GameObject whichweapon);
     public event OnHurt BeAtk;
 
+    public bool canEtk = true;
+
 
     private void Start()
     {
@@ -35,18 +37,24 @@ public class EnemyInteract : MonoBehaviour
         {
             Geturt(other.gameObject);
         }
-        if (other.gameObject.CompareTag("Player"))
-        {
-            OnAtk?.Invoke(enemyDataManager.Enemy_AttackValue());
-        }
     }
 
     private void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            StartCoroutine(AttackPlayerCoroutine());
+            if(canEtk == true)
+            {
+                canEtk = false; 
+                OnAtk?.Invoke(enemyDataManager.Enemy_AttackValue());
+                StartCoroutine(AttackPlayerCoroutine());
+            }
         }
+    }
+    private IEnumerator AttackPlayerCoroutine()
+    {
+        yield return new WaitForSeconds(2f);
+        canEtk = true;
     }
     private void Geturt(GameObject colObj)
     {        
@@ -59,14 +67,6 @@ public class EnemyInteract : MonoBehaviour
             color.a = 0;
             enemyDataManager.Enemy_SpirtRenderer().color = color;
             levelManager.RemoveEnemyToPool(gameObject);
-        }
-    }
-    private IEnumerator AttackPlayerCoroutine()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(2f);
-            OnAtk?.Invoke(enemydata.enemy_AttackVaule);
         }
     }
     public void Fliping()

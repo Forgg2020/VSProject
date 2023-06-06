@@ -10,12 +10,18 @@ public class EnemyCalculate : MonoBehaviour
     EnemyData enemyData;
     public int whichBody;
     GameObject whcihweapon;
+    public float timer = 0;
+    public bool AtkFreq = false;
     private void Start()
     {
         whichBody = Random.Range(0, 2);
         enemyData = gameObject.GetComponent<EnemyData>();
         enemyDataManager = gameObject.GetComponent<EnemyDataManager>();
         gameObject.GetComponent<EnemyInteract>().BeAtk += Geturt;
+    }
+    private void Update()
+    {
+
     }
     private void Geturt(GameObject colObj)
     {
