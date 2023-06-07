@@ -37,6 +37,7 @@ public class TzeentchWarrior : EnemyData
     {
         transform.GetChild(0).transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = DeadBodysprite[0];
         transform.GetChild(0).transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = DeadBodysprite[1];
+        transform.GetChild(0).transform.GetChild(2).GetComponent<SpriteRenderer>().sprite = DeadBodysprite[2];
     }
 }
 

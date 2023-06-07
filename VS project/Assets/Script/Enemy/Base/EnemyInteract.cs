@@ -24,11 +24,10 @@ public class EnemyInteract : MonoBehaviour
     public int dropRate;
     private void Start()
     {
-        levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();    
+        levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
         enemyDataManager = gameObject.GetComponent<EnemyDataManager>();
         enemydata = gameObject.GetComponent<EnemyData>();
     }
-
     private void Update()
     {
         Fliping();
@@ -40,7 +39,6 @@ public class EnemyInteract : MonoBehaviour
             Geturt(other.gameObject);
         }
     }
-
     private void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -87,6 +85,6 @@ public class EnemyInteract : MonoBehaviour
             {
                 gameObject.transform.localScale = new Vector3(-0.5f, 0.5f, 0.5f);
             }
-        }        
+        }
     }
 }

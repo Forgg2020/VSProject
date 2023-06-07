@@ -4,8 +4,26 @@ using UnityEngine;
 
 public class PlayerBuff : MonoBehaviour
 {
-    public float Mult_velocity = 1.1f; //增加跑速
-    public float Add_ExtraHealth = 1.1f; //增加生命
-    public float Add_ExtraSpeed = 0; //增加跑速
+    public int player_ExtraSpeed = 0;
+    public int player_ExtraHeal = 5;
+    public float Weapon_ExtraAtkValue;
+    public int Item_DropRate;
+    PlayerDataManager playerDataManager;
+    PlayerData playerData;
+    public GameObject BuffPanel;
+    private void Start()
+    {
+        playerDataManager = gameObject.GetComponent<PlayerDataManager>();
+    }
+    public void PowerBuff()
+    {
+        Weapon_ExtraAtkValue = Weapon_ExtraAtkValue + 5;
+        BuffPanel.SetActive(false);
+    }
 
+    public void SpeedBuff()
+    {
+        player_ExtraSpeed = player_ExtraSpeed + 20;
+        BuffPanel.SetActive(false);
+    }
 }

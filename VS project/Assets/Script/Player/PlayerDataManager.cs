@@ -21,8 +21,6 @@ public class PlayerDataManager : MonoBehaviour
 
     public Transform Player_Transform => gameObject.transform;
     public Rigidbody2D Player_Rb2D() => gameObject.GetComponent<Rigidbody2D>();
-    public float Player_Speed() => playerData.player_Speed;
-    public float GetSSSSpeed() => playerBuff.Add_ExtraSpeed;
-    
+    public float Player_Speed() => playerData.player_Speed + playerBuff.player_ExtraSpeed;
 
 }

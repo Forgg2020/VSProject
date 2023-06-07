@@ -18,8 +18,10 @@ public class WeaponData : MonoBehaviour
     [field: SerializeField] public AudioSource audioSource;
     public new Collider2D collider2D;
     public bool isFacingRight = false;
-    public void Start()
+    PlayerBuff playerBuff;
+    protected virtual void Start()
     {
+        playerBuff = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBuff>();
         weapon_Animator = gameObject.GetComponent<Animator>();
     }
     private void Update()

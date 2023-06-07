@@ -25,16 +25,14 @@ public class EnemySpawner : MonoBehaviour
             timer = spawnTimer;
         }
     }
-
     private void UpgradeEnemy()
     {
-        if(i < 6)
+        if(i < 5)
         {
             i = i + 1;
             spawnTimer = spawnTimer + 1;
         }
     }
-
     private void SpawnNormalEnemy()
     {
         EnemyNo = Random.Range(1, i);
@@ -44,7 +42,6 @@ public class EnemySpawner : MonoBehaviour
         LevelManager levelManager = FindObjectOfType<LevelManager>();
         levelManager.AddEnemyToPool(newEnemy);
     }
-
     private void SpawnWarrior()
     {
         EnemyNo = Random.Range(1, i);

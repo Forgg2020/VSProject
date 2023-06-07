@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class ChainSword : WeaponData
 {
-    public new void Start()
+    PlayerBuff playerBuff;
+    protected override void Start()
     {
+        playerBuff = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBuff>();
         weapon_Animator = gameObject.GetComponent<Animator>();
         weapon_AttackFreq = 2;
         weapon_AttackCD = 2;

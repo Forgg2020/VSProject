@@ -33,6 +33,7 @@ public class LevelManager : MonoBehaviour
         //FindObjectOfType<PlayerInteract>().OnPick += Healing;
         FindObjectOfType<EnemyInteract>().OnAtk += PlayerGetHurt;
         FindObjectOfType<EnemyInteract>().OnDead += DropItem;
+        FindObjectOfType<PlayerInteract>().OnPick += CollectedSoul;
     }
     public void AddEnemyToPool(GameObject enemy)
     {        
@@ -51,14 +52,20 @@ public class LevelManager : MonoBehaviour
     }
     public void DropItem(GameObject whichEnemydying)
     {
-        print("知道了");
-        int i;
-        dropRate = Random.Range(0, 2);
-        if (dropRate == 0)
+        dropRate = Random.Range(0, 10);
+        if (dropRate > 1)
         {
-            i = Random.Range(0, 2);
-            GameObject newItem = Instantiate(Item[i], whichEnemydying.transform.position, Quaternion.identity);
+            GameObject newItem = Instantiate(Item[1], whichEnemydying.transform.position, Quaternion.identity);
             newItem.transform.SetParent(null);
+        }
+        else if(dropRate == 1)
+        {
+            GameObject newItem = Instantiate(Item[0], whichEnemydying.transform.position, Quaternion.identity);
+            newItem.transform.SetParent(null);
+        }
+        else if(dropRate == 0)
+        {
+            print("啥都不做");
         }
     }
 
@@ -82,9 +89,12 @@ public class LevelManager : MonoBehaviour
         bloodbar.fillAmount += 0.1f;
     }
 
-    public void CollectedSoul()
+    public void CollectedSoul(GameObject whichItem)
     {
-
+        if(whichItem.CompareTag("Soul"))
+        {
+            SoulValue = SoulValue +1;
+        }
     }
 
     public void ConflictUpgrade(GameObject whichenemy)
