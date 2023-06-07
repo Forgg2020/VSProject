@@ -10,7 +10,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] Vector2 spawnArea;
     [SerializeField] float spawnTimer;
     float timer;
-
+    public GameObject UpgragePnael;
     private void Start()
     {
         gameObject.GetComponent<LevelManager>().OnUpgrade += UpgradeEnemy;
@@ -27,7 +27,9 @@ public class EnemySpawner : MonoBehaviour
     }
     private void UpgradeEnemy()
     {
-        if(i < 5)
+        UpgragePnael.SetActive(true);
+        Time.timeScale = 0f;
+        if (i < 5)
         {
             i = i + 1;
             spawnTimer = spawnTimer + 1;

@@ -9,21 +9,37 @@ public class PlayerBuff : MonoBehaviour
     public float Weapon_ExtraAtkValue;
     public int Item_DropRate;
     PlayerDataManager playerDataManager;
+    LevelManager levelManager;
     PlayerData playerData;
     public GameObject BuffPanel;
+
+    public int KhroneValue;
     private void Start()
     {
         playerDataManager = gameObject.GetComponent<PlayerDataManager>();
+        levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
     }
     public void PowerBuff()
     {
-        Weapon_ExtraAtkValue = Weapon_ExtraAtkValue + 5;
-        BuffPanel.SetActive(false);
+        if(KhroneValue < 4) 
+        {
+            Weapon_ExtraAtkValue = Weapon_ExtraAtkValue + 5;
+            BuffPanel.SetActive(false);
+            Time.timeScale = 1f;
+
+        }
     }
 
     public void SpeedBuff()
     {
         player_ExtraSpeed = player_ExtraSpeed + 20;
         BuffPanel.SetActive(false);
+        Time.timeScale = 1f;
+    }
+
+    public void MoreDropRate()
+    {
+        BuffPanel.SetActive(false);
+        Time.timeScale = 1f;
     }
 }

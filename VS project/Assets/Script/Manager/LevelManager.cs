@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using ToolManager;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,9 +26,14 @@ public class LevelManager : MonoBehaviour
     public float speed = 2f;
     public delegate void OnLevelUpgrade();
     public event OnLevelUpgrade OnUpgrade;
+    public event OnLevelUpgrade OnUpgrade02;
+    public event OnLevelUpgrade OnUpgrade03;
+    public event OnLevelUpgrade OnUpgrade04;
 
     [Header("玩家升級")]
     public int SoulValue;
+    public float timer;
+    public GameObject UpgradePanel;
     void Start()
     {
         //FindObjectOfType<PlayerInteract>().OnPick += Healing;
@@ -99,31 +105,27 @@ public class LevelManager : MonoBehaviour
 
     public void ConflictUpgrade(GameObject whichenemy)
     {
-        HowManyEnemyDead = HowManyEnemyDead + 1;
-        if(HowManyEnemyDead >= 10)
-        {
-            OnUpgrade?.Invoke();
-        }
-        else if(HowManyEnemyDead >=25)
-        {
-            OnUpgrade?.Invoke();
-        }
-        else if(HowManyEnemyDead >=50)
-        {
-            OnUpgrade?.Invoke();
-        }
-        else if (HowManyEnemyDead >= 75)
-        {
-            OnUpgrade?.Invoke();
-        }
-        else if (HowManyEnemyDead >= 100)
-        {
-            OnUpgrade?.Invoke();
-        }
-        else if (HowManyEnemyDead >= 125)
-        {
-            OnUpgrade?.Invoke();
-        }
+        //HowManyEnemyDead = HowManyEnemyDead + 1;
+        //if(HowManyEnemyDead >= 10)
+        //{
+        //    print("L1");
+        //    OnUpgrade?.Invoke();
+        //}
+        //else if(HowManyEnemyDead >=15)
+        //{
+        //    print("L2");
+        //    OnUpgrade02?.Invoke();
+        //}
+        //else if(HowManyEnemyDead >=50)
+        //{
+        //    print("L3");
+        //    OnUpgrade03?.Invoke();
+        //}
+        //else if (HowManyEnemyDead >= 75)
+        //{
+        //    print("L4");
+        //    OnUpgrade04?.Invoke();
+        //}
     }
 
     
@@ -137,6 +139,14 @@ public class LevelManager : MonoBehaviour
     private void Update()
     {
         Vector3 newPos = new Vector3(target.position.x, target.position.y, -10);
+        timer += Time.deltaTime;
+        if(timer > 30)
+        {
+            timer = 0;
+            OnUpgrade?.Invoke();
+            Time.timeScale = 0f;
+
+        }
     }
 
 }
