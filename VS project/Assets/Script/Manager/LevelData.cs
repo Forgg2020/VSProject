@@ -9,4 +9,10 @@ public class LevelData : MonoBehaviour
     public GameObject UpPanel;
     public GameObject EndPanel;
     public Image bloodbar;
+
+    public void Start()
+    {
+        UpPanel = GameObject.Find("UPPanel");
+        EndPanel = GameObject.Find("EndPanel");
+    }
 }

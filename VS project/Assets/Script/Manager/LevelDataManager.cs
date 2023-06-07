@@ -6,12 +6,15 @@ using UnityEngine.UI;
 public class LevelDataManager : MonoBehaviour
 {
     LevelData levelData;
-    
+    LevelState levelstate;
+
     private void Start()
     {
         levelData = gameObject.GetComponent<LevelData>();
+        levelstate= gameObject.GetComponent<LevelState>();
     }
-    public GameObject UpPanel => levelData.UpPanel;
-    public GameObject EndPanel => levelData.EndPanel;
-    public Image Player_BloodBar => levelData.bloodbar;
+    public GameObject UpPanel() => levelData.UpPanel;
+    public GameObject EndPanel() => levelData.EndPanel;
+    public Image Player_BloodBar() => levelData.bloodbar;
+    public float LevelTimer() => levelstate.timer;
 }

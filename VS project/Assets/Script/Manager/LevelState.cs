@@ -8,8 +8,8 @@ using UnityEngine.SceneManagement;
 
 public class LevelState : MonoBehaviour
 {
-    EnemyDataManager enemyDataManager;
     LevelDataManager levelDataManager;
+    LevelData levelData;
     public List<GameObject> EnemyPool;
     FindObj FindObj = new FindObj();
     public Image bloodbar;
@@ -30,9 +30,12 @@ public class LevelState : MonoBehaviour
 
     [Header("玩家升級")]
     public int SoulValue;
-    void Start()
+    public void Start()
     {
-        levelDataManager.EndPanel.SetActive(false);
+        levelDataManager = gameObject.GetComponent<LevelDataManager>();
+        levelData = gameObject.GetComponent<LevelData>();
+        levelData.UpPanel.SetActive(false);
+        levelData.EndPanel.SetActive(false);
         //FindObjectOfType<PlayerInteract>().OnPick += Healing;
         FindObjectOfType<EnemyInteract>().OnAtk += PlayerGetHurt;
         FindObjectOfType<EnemyInteract>().OnDead += DropItem;
@@ -91,7 +94,7 @@ public class LevelState : MonoBehaviour
             }
             else if(bloodbar.fillAmount <= 0)
             {
-                levelDataManager.EndPanel.SetActive(true);
+                levelData.EndPanel.SetActive(true);
                 Time.timeScale = 0;
             }
         }
@@ -118,10 +121,10 @@ public class LevelState : MonoBehaviour
     public void Update()
     {
         Vector3 newPos = new Vector3(target.position.x, target.position.y, -10);
-        timer += Time.deltaTime;
-        if(timer > 30)
+        timer -= Time.deltaTime;
+        if(timer <= 0)
         {
-            timer = 0;
+            timer = 30;
             OnUpgrade?.Invoke();
         }
     }

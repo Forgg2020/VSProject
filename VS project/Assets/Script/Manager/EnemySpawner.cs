@@ -11,9 +11,10 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] Vector2 spawnArea;
     [SerializeField] float spawnTimer;
     float timer;
+    public GameObject[] Panel;
     private void Start()
     {
-        levelDataManager = gameObject.AddComponent<LevelDataManager>(); 
+        levelDataManager = gameObject.AddComponent<LevelDataManager>();
         gameObject.GetComponent<LevelState>().OnUpgrade += UpgradeEnemy;
     }
     private void Update()
@@ -27,7 +28,7 @@ public class EnemySpawner : MonoBehaviour
     }
     private void UpgradeEnemy()
     {
-        levelDataManager.UpPanel.SetActive(true);
+        Panel[0].SetActive(true);
         Time.timeScale = 0f;
         if (i < 5)
         {
