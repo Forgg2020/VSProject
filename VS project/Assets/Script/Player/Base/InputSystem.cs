@@ -46,13 +46,6 @@ public class InputSystem : MonoBehaviour
             OnTurnVertical?.Invoke(vertical);
         }
     }
-    //public void Dash()//è’éh
-    //{
-    //    if (Input.GetKeyDown(KeyCode.Space) && playerData.canDash)
-    //    {            
-    //        OnDash?.Invoke();
-    //    }
-    //}
     public void Flip()//Ázå¸
     {
         var mousePos = Input.mousePosition;

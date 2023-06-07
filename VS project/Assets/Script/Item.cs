@@ -28,7 +28,7 @@ public class Item : MonoBehaviour
             return;
         StartCoroutine(SmoothMoveCoroutine(colObj));
 
-        Destroy(gameObject);
+        
     }
     protected IEnumerator SmoothMoveCoroutine(GameObject Item)
     {
@@ -49,6 +49,6 @@ public class Item : MonoBehaviour
             yield return null;
         }
 
-        isMoving = false;
+        Destroy(gameObject);
     }
 }

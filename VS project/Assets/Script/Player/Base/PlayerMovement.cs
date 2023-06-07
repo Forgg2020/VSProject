@@ -38,10 +38,6 @@ public class PlayerMovement : CharactorManager
     {
         movementVector.y = vertical;
     }
-    private void Dashing()
-    {
-        //StartCoroutine(Dash());
-    }
     private void Flip(float mousePV)
     {
         gameObject.transform.Rotate(0f, 180f, 0f);

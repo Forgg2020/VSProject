@@ -51,7 +51,6 @@ public class LevelManager : MonoBehaviour
         if (enemyInteract != null)
         {
             enemyInteract.OnAtk += PlayerGetHurt;
-            enemyInteract.OnDead += ConflictUpgrade;
             SubscribeToOnDead(enemyInteract);
         }
     }
@@ -113,34 +112,7 @@ public class LevelManager : MonoBehaviour
         {
             SoulValue = SoulValue +1;
         }
-    }
-
-    public void ConflictUpgrade(GameObject whichenemy)
-    {
-        //HowManyEnemyDead = HowManyEnemyDead + 1;
-        //if(HowManyEnemyDead >= 10)
-        //{
-        //    print("L1");
-        //    OnUpgrade?.Invoke();
-        //}
-        //else if(HowManyEnemyDead >=15)
-        //{
-        //    print("L2");
-        //    OnUpgrade02?.Invoke();
-        //}
-        //else if(HowManyEnemyDead >=50)
-        //{
-        //    print("L3");
-        //    OnUpgrade03?.Invoke();
-        //}
-        //else if (HowManyEnemyDead >= 75)
-        //{
-        //    print("L4");
-        //    OnUpgrade04?.Invoke();
-        //}
-    }
-
-    
+    }   
 
     private IEnumerator AttackPlayerCoroutine()
     {
