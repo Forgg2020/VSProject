@@ -25,6 +25,9 @@ public class LevelManager : MonoBehaviour
     public float speed = 2f;
     public delegate void OnLevelUpgrade();
     public event OnLevelUpgrade OnUpgrade;
+
+    [Header("玩家升級")]
+    public int SoulValue;
     void Start()
     {
         //FindObjectOfType<PlayerInteract>().OnPick += Healing;
@@ -48,7 +51,6 @@ public class LevelManager : MonoBehaviour
     }
     public void DropItem(GameObject whichEnemydying)
     {
-
         print("知道了");
         int i;
         dropRate = Random.Range(0, 2);
@@ -78,6 +80,11 @@ public class LevelManager : MonoBehaviour
     public void Healing()
     {
         bloodbar.fillAmount += 0.1f;
+    }
+
+    public void CollectedSoul()
+    {
+
     }
 
     public void ConflictUpgrade(GameObject whichenemy)

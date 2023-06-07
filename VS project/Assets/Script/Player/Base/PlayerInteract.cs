@@ -15,7 +15,7 @@ public class PlayerInteract : MonoBehaviour
         }
         if(collision.gameObject.CompareTag("Item"))
         {
-
+            Destroy(collision.gameObject.transform.parent);
         }
     }
 }
