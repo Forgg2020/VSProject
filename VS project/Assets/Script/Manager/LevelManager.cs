@@ -4,6 +4,7 @@ using System.Threading;
 using ToolManager;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -34,8 +35,10 @@ public class LevelManager : MonoBehaviour
     public int SoulValue;
     public float timer;
     public GameObject UpgradePanel;
+    public GameObject EndPanel;
     void Start()
     {
+        EndPanel.SetActive(false);
         //FindObjectOfType<PlayerInteract>().OnPick += Healing;
         FindObjectOfType<EnemyInteract>().OnAtk += PlayerGetHurt;
         FindObjectOfType<EnemyInteract>().OnDead += DropItem;
@@ -84,10 +87,19 @@ public class LevelManager : MonoBehaviour
         if (canAtk == true)
         {
             var Atk_percentage = atkvalue / 100;
+
             bloodbar.fillAmount -= Atk_percentage;
-            print("?" + Atk_percentage);
-            canAtk = false;
-            StartCoroutine(AttackPlayerCoroutine());
+            if (bloodbar.fillAmount > 0)
+            {
+                print("?" + Atk_percentage);
+                canAtk = false;
+                StartCoroutine(AttackPlayerCoroutine());
+            }
+            else if(bloodbar.fillAmount <= 0)
+            {
+                EndPanel.SetActive(true);
+                Time.timeScale = 0;
+            }
         }
     }
     public void Healing()
@@ -136,7 +148,7 @@ public class LevelManager : MonoBehaviour
         canAtk = true;
     }
 
-    private void Update()
+    public  void Update()
     {
         Vector3 newPos = new Vector3(target.position.x, target.position.y, -10);
         timer += Time.deltaTime;
@@ -144,9 +156,14 @@ public class LevelManager : MonoBehaviour
         {
             timer = 0;
             OnUpgrade?.Invoke();
-            Time.timeScale = 0f;
 
         }
     }
 
+
+    public  void Reset()
+    {
+        SceneManager.LoadScene(0);
+
+    }
 }
