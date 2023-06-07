@@ -30,7 +30,6 @@ public class LevelManager : MonoBehaviour
         //FindObjectOfType<PlayerInteract>().OnPick += Healing;
         FindObjectOfType<EnemyInteract>().OnAtk += PlayerGetHurt;
         FindObjectOfType<EnemyInteract>().OnDead += DropItem;
-        FindObjectOfType<PlayerInteract>().OnPick += MoveToPlayer;
     }
     public void AddEnemyToPool(GameObject enemy)
     {        
@@ -110,33 +109,7 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    protected void MoveToPlayer(GameObject colObj)
-    {
-        if (isMoving)
-            return;
-        StartCoroutine(SmoothMoveCoroutine(colObj));
-    }
-    protected IEnumerator SmoothMoveCoroutine(GameObject Item)
-    {
-        isMoving = true;
-        float timer = 0f;
-
-        Vector3 startPosition = transform.position;
-        Vector3 targetPosition = target.position;
-
-        while (timer < moveDuration)
-        {
-            timer += Time.deltaTime;
-
-            float t = timer / moveDuration;
-
-            Item.transform.position = Vector3.Lerp(startPosition, targetPosition, t);
-
-            yield return null;
-        }
-        Destroy(Item);
-        isMoving = false;
-    }
+    
 
     private IEnumerator AttackPlayerCoroutine()
     {

@@ -12,6 +12,7 @@ public class Item : MonoBehaviour
     private void Start()
     {
         startPosition = gameObject.transform.position;
+        FindObjectOfType<PlayerInteract>().OnPick += MoveToPlayer;
     }
 
     private void Update()
@@ -21,17 +22,19 @@ public class Item : MonoBehaviour
         startPosition = transform.position;
 
     }
-    protected void MoveToPlayer()
+    protected void MoveToPlayer(GameObject colObj)
     {
         if (isMoving)
             return;
-        StartCoroutine(SmoothMoveCoroutine());
+        StartCoroutine(SmoothMoveCoroutine(colObj));
     }
-    protected IEnumerator SmoothMoveCoroutine()
+    protected IEnumerator SmoothMoveCoroutine(GameObject Item)
     {
         isMoving = true;
         float timer = 0f;
-        
+
+        Vector2 startPosition = transform.position;
+        Vector2 targetPosition = target.position;
 
         while (timer < moveDuration)
         {
@@ -39,11 +42,11 @@ public class Item : MonoBehaviour
 
             float t = timer / moveDuration;
 
-            gameObject.transform.position = Vector3.Lerp(startPosition, targetPosition, t);
+            Item.transform.position = Vector2.Lerp(startPosition, targetPosition, t);
 
             yield return null;
         }
-        gameObject.SetActive(false);
+        Destroy(Item);
         isMoving = false;
     }
 }
