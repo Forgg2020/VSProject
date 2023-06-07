@@ -13,5 +13,9 @@ public class PlayerInteract : MonoBehaviour
         {
             OnPick?.Invoke(collision.gameObject);
         }
+        if(collision.gameObject.CompareTag("Item"))
+        {
+
+        }
     }
 }
