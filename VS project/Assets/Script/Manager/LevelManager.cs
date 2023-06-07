@@ -161,9 +161,9 @@ public class LevelManager : MonoBehaviour
     }
 
 
-    public  void Reset()
+    public void ReLoadScene()
     {
-        SceneManager.LoadScene(0);
-
+        SceneManager.LoadScene("NewScene");
+        print("reload");
     }
 }
