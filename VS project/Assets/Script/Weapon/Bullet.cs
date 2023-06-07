@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : WeaponData
 {
     public float speed = 10f;
     public float lifetime = 3f;
@@ -12,7 +12,7 @@ public class Bullet : MonoBehaviour
     public Vector2 direction;
     public Vector3 PlayerVec;
     public GameObject PlayerObj;
-    private void Start()
+    private new void Start()
     {
         PlayerObj = GameObject.FindGameObjectWithTag("Player");
         PlayerVec = PlayerObj.transform.rotation.eulerAngles;
