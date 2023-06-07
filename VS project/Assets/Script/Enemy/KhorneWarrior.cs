@@ -15,7 +15,7 @@ public class KhorneWarrior : EnemyData
         GetBody();
         enemy_Health = 20;
         enemy_Speed = 5;
-        enemy_AttackVaule = 20;
+        enemy_AttackVaule = 30;
         EnemyBody = DeadBodyObj;
     }
     public void GetAssetData()

@@ -6,9 +6,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class LevelManager : MonoBehaviour
+public class LevelState : MonoBehaviour
 {
     EnemyDataManager enemyDataManager;
+    LevelDataManager levelDataManager;
     public List<GameObject> EnemyPool;
     FindObj FindObj = new FindObj();
     public Image bloodbar;
@@ -22,27 +23,21 @@ public class LevelManager : MonoBehaviour
     public bool canAtk = true;
     public GameObject[] Item;
     public int dropRate;
-    //Camera
-    public GameObject Camera;
-    public float speed = 2f;
+
+    public float timer = 0;
     public delegate void OnLevelUpgrade();
     public event OnLevelUpgrade OnUpgrade;
-    public event OnLevelUpgrade OnUpgrade02;
-    public event OnLevelUpgrade OnUpgrade03;
-    public event OnLevelUpgrade OnUpgrade04;
 
     [Header("玩家升級")]
     public int SoulValue;
-    public float timer;
-    public GameObject UpgradePanel;
-    public GameObject EndPanel;
     void Start()
     {
-        EndPanel.SetActive(false);
+        levelDataManager.EndPanel.SetActive(false);
         //FindObjectOfType<PlayerInteract>().OnPick += Healing;
         FindObjectOfType<EnemyInteract>().OnAtk += PlayerGetHurt;
         FindObjectOfType<EnemyInteract>().OnDead += DropItem;
         FindObjectOfType<PlayerInteract>().OnPick += CollectedSoul;
+        FindObjectOfType<PlayerInteract>().OnPick += Healing;
     }
     public void AddEnemyToPool(GameObject enemy)
     {        
@@ -96,12 +91,12 @@ public class LevelManager : MonoBehaviour
             }
             else if(bloodbar.fillAmount <= 0)
             {
-                EndPanel.SetActive(true);
+                levelDataManager.EndPanel.SetActive(true);
                 Time.timeScale = 0;
             }
         }
     }
-    public void Healing()
+    public void Healing(GameObject heal)
     {
         bloodbar.fillAmount += 0.1f;
     }
@@ -120,7 +115,7 @@ public class LevelManager : MonoBehaviour
         canAtk = true;
     }
 
-    public  void Update()
+    public void Update()
     {
         Vector3 newPos = new Vector3(target.position.x, target.position.y, -10);
         timer += Time.deltaTime;
@@ -128,11 +123,8 @@ public class LevelManager : MonoBehaviour
         {
             timer = 0;
             OnUpgrade?.Invoke();
-
         }
     }
-
-
     public void ReLoadScene()
     {
         SceneManager.LoadScene("NewScene");

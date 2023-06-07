@@ -7,7 +7,7 @@ using Completed;
 public class EnemyInteract : MonoBehaviour
 {
     EnemyDataManager enemyDataManager;
-    LevelManager levelManager;
+    LevelState levelManager;
     public EnemyData enemydata;
 
     public delegate void OnDying(GameObject whichenemy);
@@ -24,7 +24,7 @@ public class EnemyInteract : MonoBehaviour
     public int dropRate;
     private void Start()
     {
-        levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+        levelManager = GameObject.Find("LevelManager").GetComponent<LevelState>();
         enemyDataManager = gameObject.GetComponent<EnemyDataManager>();
         enemydata = gameObject.GetComponent<EnemyData>();
     }

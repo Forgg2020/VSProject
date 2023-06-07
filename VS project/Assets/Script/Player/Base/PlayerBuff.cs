@@ -9,7 +9,7 @@ public class PlayerBuff : MonoBehaviour
     public float Weapon_ExtraAtkValue;
     public int Item_DropRate;
     PlayerDataManager playerDataManager;
-    LevelManager levelManager;
+    LevelState levelManager;
     PlayerData playerData;
     public GameObject BuffPanel;
 
@@ -17,7 +17,7 @@ public class PlayerBuff : MonoBehaviour
     private void Start()
     {
         playerDataManager = gameObject.GetComponent<PlayerDataManager>();
-        levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+        levelManager = GameObject.Find("LevelManager").GetComponent<LevelState>();
     }
     public void PowerBuff()
     {

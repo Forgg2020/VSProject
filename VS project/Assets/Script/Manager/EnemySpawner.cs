@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    LevelDataManager levelDataManager;
     [SerializeField] int EnemyNo;
     public int i = 1;
     [SerializeField] GameObject[] Enemy;
     [SerializeField] Vector2 spawnArea;
     [SerializeField] float spawnTimer;
     float timer;
-    public GameObject UpgragePnael;
     private void Start()
     {
-        gameObject.GetComponent<LevelManager>().OnUpgrade += UpgradeEnemy;
+        levelDataManager = gameObject.AddComponent<LevelDataManager>(); 
+        gameObject.GetComponent<LevelState>().OnUpgrade += UpgradeEnemy;
     }
     private void Update()
     {
@@ -21,13 +22,12 @@ public class EnemySpawner : MonoBehaviour
         if(timer < 0)
         {
             SpawnNormalEnemy();
-            //SpawnWarrior();
             timer = spawnTimer;
         }
     }
     private void UpgradeEnemy()
     {
-        UpgragePnael.SetActive(true);
+        levelDataManager.UpPanel.SetActive(true);
         Time.timeScale = 0f;
         if (i < 5)
         {
@@ -41,7 +41,7 @@ public class EnemySpawner : MonoBehaviour
         Vector3 pos = new Vector3(Random.Range(-spawnArea.x, spawnArea.x),Random.Range(-spawnArea.y, spawnArea.y),0f);
         GameObject newEnemy = Instantiate(Enemy[EnemyNo]);
         newEnemy.transform.position = pos;
-        LevelManager levelManager = FindObjectOfType<LevelManager>();
+        LevelState levelManager = FindObjectOfType<LevelState>();
         levelManager.AddEnemyToPool(newEnemy);
     }
     private void SpawnWarrior()
@@ -50,7 +50,7 @@ public class EnemySpawner : MonoBehaviour
         Vector3 pos = new Vector3(Random.Range(-spawnArea.x, spawnArea.x),Random.Range(-spawnArea.y, spawnArea.y), 0f);
         GameObject newEnemy = Instantiate(Enemy[EnemyNo]);
         newEnemy.transform.position = pos;
-        LevelManager levelManager = FindObjectOfType<LevelManager>();
+        LevelState levelManager = FindObjectOfType<LevelState>();
         levelManager.AddEnemyToPool(newEnemy);
     }
 }

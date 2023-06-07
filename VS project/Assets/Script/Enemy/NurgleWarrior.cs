@@ -13,7 +13,7 @@ public class NurgleWarrior : EnemyData
         j = Random.Range(0, 2);
         GetAssetData();
         GetBody();
-        enemy_Health = 30;
+        enemy_Health = 50;
         enemy_Speed = 3;
         enemy_AttackVaule = 10;
         EnemyBody = DeadBodyObj;

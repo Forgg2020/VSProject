@@ -14,7 +14,7 @@ public class SlaaneshWarrior : EnemyData
         GetAssetData();
         GetBody();
         enemy_Health = 20;
-        enemy_Speed = 7;
+        enemy_Speed = 24;
         enemy_AttackVaule = 10;
         EnemyBody = DeadBodyObj;
     }
