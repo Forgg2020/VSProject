@@ -25,6 +25,7 @@ public class EnemyState : MonoBehaviour
         EnemySprite = gameObject.GetComponent<SpriteRenderer>();
         startColor = EnemySprite.color;
         gameObject.GetComponent<EnemyInteract>().OnDead += Dying;
+        gameObject.GetComponent<EnemyInteract>().OnBlow += BlowUp;
     }
     public void Dying(GameObject whichenemy)
     {
@@ -52,5 +53,24 @@ public class EnemyState : MonoBehaviour
         Destroy(gameObject);
     }
 
-    
+    public void BlowUp(GameObject WhichEnemy)
+    {
+        isDead = true;
+        enemyDataManager.Enenmy_Rb2D().simulated = false;
+        startColor = Color.black;
+
+        StartCoroutine(BlowOutCoroutine());
+    }
+    public IEnumerator BlowOutCoroutine()
+    {
+        float timer = 0;
+        while (timer < fadeDuration)
+        {
+            timer += Time.deltaTime;
+            float t = Mathf.Clamp01(timer / fadeDuration);
+            enemyDataManager.Enemy_SpirtRenderer().color = Color.Lerp(startColor, targetColor, t);
+            yield return null;
+        }
+        Destroy(gameObject);
+    }
 }

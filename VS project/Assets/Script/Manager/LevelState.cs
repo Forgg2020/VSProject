@@ -40,8 +40,8 @@ public class LevelState : MonoBehaviour
         UIPanel[1].SetActive(false);
         FindObjectOfType<EnemyInteract>().OnAtk += PlayerGetHurt;
         FindObjectOfType<EnemyInteract>().OnDead += DropItem;
-        FindObjectOfType<PlayerInteract>().OnPick += CollectedSoul;
-        FindObjectOfType<PlayerInteract>().OnPick += Healing;
+        FindObjectOfType<PlayerInteract>().OnHeal += Healing;
+        FindObjectOfType<PlayerInteract>().OnSoul += CollectedSoul;
     }
     public void AddEnemyToPool(GameObject enemy)
     {        
@@ -100,17 +100,14 @@ public class LevelState : MonoBehaviour
             }
         }
     }
-    public void Healing(GameObject heal)
+    public void Healing()
     {
         bloodbar.fillAmount += 0.1f;
     }
 
-    public void CollectedSoul(GameObject whichItem)
+    public void CollectedSoul()
     {
-        if(whichItem.CompareTag("Soul"))
-        {
-            SoulValue = SoulValue +1;
-        }
+       SoulValue = SoulValue +1;
     }   
 
     private IEnumerator AttackPlayerCoroutine()

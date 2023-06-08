@@ -10,8 +10,8 @@ public class WeaponDataManager : MonoBehaviour
     private void Start()
     {
         weaponData = gameObject.GetComponent<WeaponData>();
-        playerBuff = GameObject.Find("Player").GetComponent<PlayerBuff>();
-        playerDataManager = GameObject.Find("Player").GetComponent<PlayerDataManager>();
+        playerBuff = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBuff>();
+        playerDataManager = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerDataManager>();
     }
 
     public float ExtraAtkValue() => playerBuff.Weapon_ExtraAtkValue;

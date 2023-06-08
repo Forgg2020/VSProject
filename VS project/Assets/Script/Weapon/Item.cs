@@ -26,8 +26,7 @@ public class Item : MonoBehaviour
     {
         while (true)
         {
-            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, playerDataManager.Player_Transform.position, 10f * Time.deltaTime);
-            
+            gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, playerDataManager.Player_Transform.position, 10f * Time.deltaTime);            
             yield return null;
             Invoke("OnDestroy", 0.5f);
         }

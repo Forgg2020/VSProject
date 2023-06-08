@@ -12,6 +12,7 @@ public class EnemyInteract : MonoBehaviour
 
     public delegate void OnDying(GameObject whichenemy);
     public event OnDying OnDead;
+    public event OnDying OnBlow;
     public delegate void OnAttack(float atk);
     public event OnAttack OnAtk;
     public delegate void OnHurt(GameObject whichweapon);
@@ -37,6 +38,10 @@ public class EnemyInteract : MonoBehaviour
         if (other.gameObject.CompareTag("Weapon") )
         {
             Geturt(other.gameObject);
+        }
+        if(other.gameObject.CompareTag("Bomb"))
+        {
+            OnBlow?.Invoke(other.gameObject);
         }
     }
     private void OnTriggerStay2D(Collider2D other)

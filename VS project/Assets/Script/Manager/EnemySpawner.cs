@@ -1,3 +1,4 @@
+﻿using Completed;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -39,16 +40,29 @@ public class EnemySpawner : MonoBehaviour
     private void SpawnNormalEnemy()
     {
         EnemyNo = Random.Range(1, i);
-        Vector3 pos = new Vector3(Random.Range(-spawnArea.x, spawnArea.x),Random.Range(-spawnArea.y, spawnArea.y),0f);
+        Vector3 pos = Vector3.zero;
+        bool validPosition = false;
+
+        while (!validPosition)
+        {
+            pos = new Vector3(Random.Range(-spawnArea.x, spawnArea.x), Random.Range(-spawnArea.y, spawnArea.y), 0f);
+
+            if (Vector3.Distance(pos, levelDataManager.Player().transform.position) >= 10f)
+            {
+                validPosition = true;
+            }
+        }
+
         GameObject newEnemy = Instantiate(Enemy[EnemyNo]);
         newEnemy.transform.position = pos;
+
         LevelState levelManager = FindObjectOfType<LevelState>();
         levelManager.AddEnemyToPool(newEnemy);
     }
     private void SpawnWarrior()
     {
         EnemyNo = Random.Range(1, i);
-        Vector3 pos = new Vector3(Random.Range(-spawnArea.x, spawnArea.x),Random.Range(-spawnArea.y, spawnArea.y), 0f);
+        Vector3 pos = new Vector3(Random.Range(-spawnArea.x, spawnArea.x), Random.Range(-spawnArea.y, spawnArea.y), 0f);
         GameObject newEnemy = Instantiate(Enemy[EnemyNo]);
         newEnemy.transform.position = pos;
         LevelState levelManager = FindObjectOfType<LevelState>();

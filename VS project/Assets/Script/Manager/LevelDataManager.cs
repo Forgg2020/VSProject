@@ -17,4 +17,5 @@ public class LevelDataManager : MonoBehaviour
     public GameObject EndPanel() => levelData.EndPanel;
     public Image Player_BloodBar() => levelData.bloodbar;
     public float LevelTimer() => levelstate.timer;
+    public GameObject Player() => levelData.Plyaer;
 }
