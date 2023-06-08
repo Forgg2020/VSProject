@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Clocker : MonoBehaviour
 {
     LevelDataManager levelDataManager;
+    public Animator Anim;
     public Sprite[] timerSprite;
     public Image N1;
     public Image N2;
@@ -16,9 +17,11 @@ public class Clocker : MonoBehaviour
     private void Start()
     {
         levelDataManager = gameObject.GetComponent<LevelDataManager>();
+
     }
     public void Update()
     {
+        Anim.SetFloat("Timer", levelDataManager.LevelTimer());
         Ten = levelDataManager.LevelTimer() / 10;
         int i = Mathf.FloorToInt(Ten);
         N1.sprite = timerSprite[i];

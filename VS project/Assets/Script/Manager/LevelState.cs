@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelState : MonoBehaviour
 {
+    TimeFunction timeFunction = new TimeFunction();
     LevelDataManager levelDataManager;
     LevelData levelData;
     public List<GameObject> EnemyPool;
@@ -27,16 +28,15 @@ public class LevelState : MonoBehaviour
     public float timer = 0;
     public delegate void OnLevelUpgrade();
     public event OnLevelUpgrade OnUpgrade;
+    public event OnLevelUpgrade OnStartCounter;
 
     [Header("玩家升級")]
     public int SoulValue;
     public void Start()
     {
-        levelDataManager = gameObject.GetComponent<LevelDataManager>();
         levelData = gameObject.GetComponent<LevelData>();
         levelData.UpPanel.SetActive(false);
         levelData.EndPanel.SetActive(false);
-        //FindObjectOfType<PlayerInteract>().OnPick += Healing;
         FindObjectOfType<EnemyInteract>().OnAtk += PlayerGetHurt;
         FindObjectOfType<EnemyInteract>().OnDead += DropItem;
         FindObjectOfType<PlayerInteract>().OnPick += CollectedSoul;
@@ -95,7 +95,7 @@ public class LevelState : MonoBehaviour
             else if(bloodbar.fillAmount <= 0)
             {
                 levelData.EndPanel.SetActive(true);
-                Time.timeScale = 0;
+                timeFunction.StopTime();
             }
         }
     }

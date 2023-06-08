@@ -37,7 +37,7 @@ namespace ToolManager
             }
         }
     }
-    
+
     public class colliderManager : MonoBehaviour
     {
         protected virtual string CollisionTag { get; } = "Player";
@@ -94,5 +94,15 @@ namespace ToolManager
 
     }
 
-
+    public class TimeFunction
+    {
+        public void StopTime()
+        {
+            Time.timeScale = 0;
+        }
+        public void KeepTime()
+        {
+            Time.timeScale = 1;
+        }
+    }
 }

@@ -56,21 +56,4 @@ public class PlayerMovement : CharactorManager
         Vector2 direction = new Vector2(mousePosition.x - weaponPoint.transform.position.x, mousePosition.y - weaponPoint.transform.position.y);
         weaponPoint.transform.up = direction;
     }
-
-
-
-    /*Œ÷”\?™½*/
-    //private IEnumerator Dash()
-    //{
-    //    playerData.canDash = false;
-    //    playerData.isDashing = true;
-    //    rb2D.gravityScale = 0f;
-    //    rb2D.velocity = new Vector2(transform.localScale.x * playerData.dashPower, 0f);
-    //    Tr.emitting = true;
-    //    yield return new WaitForSeconds(playerData.dashTime);
-    //    Tr.emitting = false;
-    //    playerData.isDashing = false;
-    //    yield return new WaitForSeconds(playerData.dashingCooldown);
-    //    playerData.canDash = true;
-    //}
 }

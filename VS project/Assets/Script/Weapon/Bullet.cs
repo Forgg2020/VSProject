@@ -12,23 +12,21 @@ public class Bullet : WeaponData
     public Vector2 direction;
     public Vector3 PlayerVec;
     public GameObject PlayerObj;
-    PlayerBuff playerBuff;
+    WeaponDataManager weaponDataManager;
     protected override void Start()
     {
-        playerBuff = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBuff>();
         PlayerObj = GameObject.FindGameObjectWithTag("Player");
         PlayerVec = PlayerObj.transform.rotation.eulerAngles;
         Destroy(gameObject, lifetime);
         weapon_AttackFreq = 2;
         weapon_AttackCD = 2;
-        weapon_AttackDmg = 0f + playerBuff.Weapon_ExtraAtkValue;
+        weapon_AttackDmg = 0f + weaponDataManager.ExtraAtkValue();
         weapon_AttackRange = 10;
         weapon_AttackRepel = 10;
     }
 
      void Update()
     {
-        // 在 Update 函數中更新子彈的位置
         GetFlip(500);
         transform.Translate(direction * speed * Time.deltaTime);
     }
