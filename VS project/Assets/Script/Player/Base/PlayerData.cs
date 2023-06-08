@@ -18,11 +18,15 @@ public class PlayerData
     public virtual float player_InvincibleTime { get; set;} = 0.5f;
     public virtual float player_AttackValue { get; set; } = 10;
 
-    public Transform PlyaerTran;
+    public Transform PlyaerTransForm;
     //****************************Dash衝刺****************************//
     public float dashingCooldown = 1f;
     public float dashPower = 24.0f;
     public float dashTime = 0.2f;
     public bool canDash = true;
     public bool isDashing;
+
+    void Update()
+    {
+    }
 }

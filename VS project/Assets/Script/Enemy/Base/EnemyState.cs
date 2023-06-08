@@ -8,15 +8,14 @@ using System.Net.NetworkInformation;
 public class EnemyState : MonoBehaviour
 {
     EnemyDataManager enemyDataManager;
+
+    
     [Header("顏色")]
     public float fadeDuration;
     private SpriteRenderer EnemySprite;
     private Color startColor;
     private Color targetColor = new Color(1f, 1f, 1f, 0f);
 
-    [Header("掉落")]
-    public GameObject[] Item;
-    public int dropRate;
 
     [Header("死亡")]
     public bool isDead = false;
@@ -39,7 +38,6 @@ public class EnemyState : MonoBehaviour
         EnemyDeadBody.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = enemyDataManager.Enemy_DeadSprite02();
         Instantiate(EnemyDeadBody, gameObject.transform);
         StartCoroutine(FadeOutCoroutine());
-        //DropItem();
     }
     public IEnumerator FadeOutCoroutine()
     {
@@ -54,15 +52,5 @@ public class EnemyState : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void DropItem()
-    {
-        int i;
-        dropRate = Random.Range(0, 2);
-        if( dropRate == 0 )
-        {
-            i = Random.Range(0, 2);
-            GameObject newItem = Instantiate(Item[i], enemyDataManager.EnemyTransform().position, Quaternion.identity);
-            newItem.transform.SetParent(null);
-        }
-    }
+    
 }

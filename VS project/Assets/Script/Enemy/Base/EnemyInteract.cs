@@ -67,7 +67,6 @@ public class EnemyInteract : MonoBehaviour
             color.a = 0;
             enemyDataManager.Enemy_SpirtRenderer().color = color;
             levelManager.RemoveEnemyToPool(gameObject);
-            print("死了");
         }
     }
     public void Fliping()

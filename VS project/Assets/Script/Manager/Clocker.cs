@@ -17,7 +17,6 @@ public class Clocker : MonoBehaviour
     private void Start()
     {
         levelDataManager = gameObject.GetComponent<LevelDataManager>();
-
     }
     public void Update()
     {
@@ -28,6 +27,5 @@ public class Clocker : MonoBehaviour
         Digits = levelDataManager.LevelTimer() % 10;
         int j = Mathf.FloorToInt(Digits);
         N2.sprite = timerSprite[j];
-        print(i);
     }
 }

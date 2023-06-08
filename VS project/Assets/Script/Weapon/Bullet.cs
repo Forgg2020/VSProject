@@ -15,6 +15,7 @@ public class Bullet : WeaponData
     WeaponDataManager weaponDataManager;
     protected override void Start()
     {
+        weaponDataManager = gameObject.GetComponent<WeaponDataManager>();   
         PlayerObj = GameObject.FindGameObjectWithTag("Player");
         PlayerVec = PlayerObj.transform.rotation.eulerAngles;
         Destroy(gameObject, lifetime);

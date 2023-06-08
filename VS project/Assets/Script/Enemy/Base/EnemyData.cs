@@ -61,13 +61,4 @@ public class EnemyData : MonoBehaviour
         enemy_AttackVaule = attackvaule;
         EnemyBody = enemyBody;
     }
-    //public void GetSprite(int i, GameObject BodyObj, Sprite sp01, Sprite sp02)
-    //{
-    //    GameObject BodySplit0 = BodyObj.transform.GetChild(0).gameObject;
-    //    GameObject BodySplit1 = BodyObj.transform.GetChild(1).gameObject;
-    //    SpriteRenderer SR01 = BodySplit0.GetComponent<SpriteRenderer>();
-    //    SpriteRenderer SR02 = BodySplit1.GetComponent<SpriteRenderer>();
-    //    SR01.sprite = sp01;
-    //    SR02.sprite = sp02;
-    //}
 }

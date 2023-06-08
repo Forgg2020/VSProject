@@ -6,10 +6,10 @@ public class EnemySpawner : MonoBehaviour
 {
     LevelDataManager levelDataManager;
     [SerializeField] int EnemyNo;
-    public int i = 1;
+    [SerializeField] float spawnTimer;
     [SerializeField] GameObject[] Enemy;
     [SerializeField] Vector2 spawnArea;
-    [SerializeField] float spawnTimer;
+    public int i = 1;
     float timer;
     public GameObject[] Panel;
     private void Start()

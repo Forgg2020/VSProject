@@ -11,12 +11,11 @@ public class LevelState : MonoBehaviour
     TimeFunction timeFunction = new TimeFunction();
     LevelDataManager levelDataManager;
     LevelData levelData;
-    public List<GameObject> EnemyPool;
-    FindObj FindObj = new FindObj();
+
+    [Header("血量")]
     public Image bloodbar;
     public int HowManyEnemyDead;
 
-    //Item
     [Header("掉落")]
     public Transform target;
     public float moveDuration = 0.5f;
@@ -25,18 +24,20 @@ public class LevelState : MonoBehaviour
     public GameObject[] Item;
     public int dropRate;
 
+
+    [Header("關卡")]
     public float timer = 0;
     public delegate void OnLevelUpgrade();
     public event OnLevelUpgrade OnUpgrade;
-    public event OnLevelUpgrade OnStartCounter;
+    public List<GameObject> EnemyPool;
 
     [Header("玩家升級")]
     public int SoulValue;
+    public GameObject[] UIPanel;
     public void Start()
     {
-        levelData = gameObject.GetComponent<LevelData>();
-        levelData.UpPanel.SetActive(false);
-        levelData.EndPanel.SetActive(false);
+        UIPanel[0].SetActive(false);
+        UIPanel[1].SetActive(false);
         FindObjectOfType<EnemyInteract>().OnAtk += PlayerGetHurt;
         FindObjectOfType<EnemyInteract>().OnDead += DropItem;
         FindObjectOfType<PlayerInteract>().OnPick += CollectedSoul;

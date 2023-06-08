@@ -10,6 +10,7 @@ public class PlayerMovement : CharactorManager
     FindObj findObj = new FindObj();
     TrailRenderer Tr;
     GameObject weaponPoint;
+    public Transform PlayerTransform;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +30,7 @@ public class PlayerMovement : CharactorManager
     private void Update()
     {
         FacePlayer();
+        PlayerTransform = gameObject.transform;
     }
     private void TurnHorizontal(float horizontal)
     {

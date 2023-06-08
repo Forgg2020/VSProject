@@ -19,7 +19,7 @@ public class PlayerDataManager : MonoBehaviour
         inputsystem = gameObject.GetComponent<InputSystem>();
     }
 
-    public Transform Player_Transform => gameObject.transform;
+    public Transform Player_Transform => playerMovement.PlayerTransform;
     public Rigidbody2D Player_Rb2D() => gameObject.GetComponent<Rigidbody2D>();
     public float Player_Speed() => playerData.player_Speed + playerBuff.player_ExtraSpeed;
 
